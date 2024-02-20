@@ -59,4 +59,29 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 })
 });
 
+router.put('/:id', rejectUnauthenticated, (req, res) => {
+  const user = req.user.id;
+  const goal = req.body
+
+  const query = `
+  UPDATE "goals"
+  SET 
+    "type"=$1,
+    "description"=$2,
+    "is_complete"=$3
+  WHERE
+    "id"=$4
+    AND
+    "user_id"= $5;
+  `;
+
+    console.log(`This is what I am updating:`, req.body);
+
+  pool
+  .query(query, [goal.type, goal.description, goal.is_complete, req.params.id, user])
+  .then(() => res.sendStatus(204))
+  .catch((err) => { console.log("Error updating goal", err);
+  res.sendStatus(500);
+})
+});
 module.exports = router;
