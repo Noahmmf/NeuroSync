@@ -1,19 +1,41 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 /**
- * GET route template
+Get request for goals section. rejectUnauthenticated user will reject anyone
+who is not the logged in user. 
  */
-router.get('/', (req, res) => {
-  // GET route code here
+router.get('/', rejectUnauthenticated, (req, res) => {
+  const queryText = 'SELECT * FROM "goals" WHERE user_id=$1';
+
+  pool.query(queryText, [req.user.id])
+  .then((result) => res.send(result.rows))
+  .catch((err) => {
+    console.log('Error in GET server:', err);
+    res.sendStatus(500);
+  })
 });
 
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
-  // POST route code here
+router.post('/', rejectUnauthenticated, (req, res) => {
+  const user = req.user.id;
+  const queryText = `INSERT INTO "goals" ("user_id", "type", "description")
+  VALUES ($1 , $2 , $3);`;
+
+  console.log(`here is the insert for goals:`, user, req.body.type, req.body.description);
+
+  pool.query(queryText, [user, req.body.type, req.body.description])
+  .then(() => res.sendStatus(201))
+  .catch((err) => {
+    console.log("Can't add to goals", err);
+    res.sendStatus(500);
+  });
 });
 
 module.exports = router;
