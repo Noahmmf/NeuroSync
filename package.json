@@ -6,6 +6,12 @@
     "node": "18.x"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.10",
+    "@fullcalendar/daygrid": "^6.1.10",
+    "@fullcalendar/interaction": "^6.1.10",
+    "@fullcalendar/list": "^6.1.10",
+    "@fullcalendar/react": "^6.1.10",
+    "@fullcalendar/timegrid": "^6.1.10",
     "axios": "^1.6.2",
     "bcryptjs": "^2.4.3",
     "cookie-session": "^2.0.0",
