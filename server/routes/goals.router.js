@@ -38,4 +38,25 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   });
 });
 
+/**
+ * Delete an item if it's something the logged in user added the goal
+ */
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+  const goalId = req.params.id;
+  const user = req.user.id;
+
+  const query = `
+  DELETE FROM "goals"
+  WHERE "id" = $1
+  AND "user_id" = $2;
+  `
+
+  pool
+  .query(query, [goalId, user])
+  .then(() => res.sendStatus(204))
+  .catch((err) => { console.log("Error deleteing goal", err);
+  res.sendStatus(500);
+})
+});
+
 module.exports = router;
