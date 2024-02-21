@@ -101,4 +101,38 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
       res.sendStatus(500);
     });
 });
+
+router.post("/code", rejectUnauthenticated, (req, res) => {
+    const queryText= `
+    SELECT * FROM "household"
+    WHERE
+     "name"= $1
+    AND
+    "household_key" = $2; 
+    `;
+
+    pool.query(queryText, [req.body.name, req.body.household_key])
+    .then(result => {
+        const userId = req.user.id;
+        const foundHousehold = result.rows[0];
+        console.log('This is household id:', foundHousehold);
+
+        const newHouseholdMembers = `
+        INSERT INTO  "household_members"
+        ("household_id", "user_id")
+        VALUES
+        ($1, $2);
+        `;
+
+        pool.query(newHouseholdMembers, [foundHousehold.id, userId])
+        .then(result => {
+            res.sendStatus(200);
+
+        }).catch((err) => {
+            console.log("Error updating household", err);
+            res.sendStatus(500);
+          });
+    })
+})
+
 module.exports = router;
