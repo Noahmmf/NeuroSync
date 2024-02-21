@@ -10,7 +10,11 @@ Get request for goals section. rejectUnauthenticated user will reject anyone
 who is not the logged in user. 
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
-  const queryText = "";
+  const queryText = ` SELECT * FROM "household"
+  JOIN "household_members" ON "household"."id" = "household_members"."household_id"
+     WHERE
+     "user_id"=$1;
+ `;
 
   pool
     .query(queryText, [req.user.id])
@@ -64,23 +68,34 @@ router.post("/", rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * Delete an item if it's something the logged in user added the goal
+ * Delete the Household in "household" table and users in the household in "household_members" table.
  */
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
-  const taskId = req.params.id;
-  //   const user = req.user.id;
-
-  const query = `
-
+  const householdId = req.params.id;
+  // Query to delete household members
+  const deleteMembersQuery = `
+    DELETE FROM "household_members"
+    WHERE "household_id" = $1;
   `;
-
-  pool
-    .query(query, [])
-    .then(() => res.sendStatus(204))
-    .catch((err) => {
-      console.log("Error deleteing task", err);
-      res.sendStatus(500);
-    });
+  
+  //first query to DB to delete "household_members"
+  pool.query(deleteMembersQuery, [householdId]).then((result) => {
+    // Query to delete household
+    const deleteHouseholdQuery = `
+    DELETE FROM "household"
+    WHERE "id" = $1;
+    `;
+    //Second query to detele "household"
+    pool
+      .query(deleteHouseholdQuery, [householdId])
+      .then((result) => {
+        res.sendStatus(204);
+      })
+      .catch((err) => {
+        console.log("Error updating household", err);
+        res.sendStatus(500);
+      });
+  });
 });
 
 router.put("/:id", rejectUnauthenticated, (req, res) => {
@@ -103,7 +118,7 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
 });
 
 router.post("/code", rejectUnauthenticated, (req, res) => {
-    const queryText= `
+  const queryText = `
     SELECT * FROM "household"
     WHERE
      "name"= $1
@@ -111,28 +126,30 @@ router.post("/code", rejectUnauthenticated, (req, res) => {
     "household_key" = $2; 
     `;
 
-    pool.query(queryText, [req.body.name, req.body.household_key])
-    .then(result => {
-        const userId = req.user.id;
-        const foundHousehold = result.rows[0];
-        console.log('This is household id:', foundHousehold);
+  pool
+    .query(queryText, [req.body.name, req.body.household_key])
+    .then((result) => {
+      const userId = req.user.id;
+      const foundHousehold = result.rows[0];
+      console.log("This is household id:", foundHousehold);
 
-        const newHouseholdMembers = `
+      const newHouseholdMembers = `
         INSERT INTO  "household_members"
         ("household_id", "user_id")
         VALUES
         ($1, $2);
         `;
 
-        pool.query(newHouseholdMembers, [foundHousehold.id, userId])
-        .then(result => {
-            res.sendStatus(200);
-
-        }).catch((err) => {
-            console.log("Error updating household", err);
-            res.sendStatus(500);
-          });
-    })
-})
+      pool
+        .query(newHouseholdMembers, [foundHousehold.id, userId])
+        .then((result) => {
+          res.sendStatus(200);
+        })
+        .catch((err) => {
+          console.log("Error updating household", err);
+          res.sendStatus(500);
+        });
+    });
+});
 
 module.exports = router;
