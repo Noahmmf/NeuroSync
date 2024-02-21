@@ -6,7 +6,7 @@ const {
 } = require("../modules/authentication-middleware");
 
 /**
-Get request for goals section. rejectUnauthenticated user will reject anyone
+Get request for household section. rejectUnauthenticated user will reject anyone
 who is not the logged in user. 
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
@@ -26,7 +26,7 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 });
 
 /**
- * POST route template
+ * POST route for /household
  */
 router.post("/", rejectUnauthenticated, (req, res) => {
   const userId = req.user.id;
@@ -77,7 +77,7 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
     DELETE FROM "household_members"
     WHERE "household_id" = $1;
   `;
-  
+
   //first query to DB to delete "household_members"
   pool.query(deleteMembersQuery, [householdId]).then((result) => {
     // Query to delete household
@@ -98,25 +98,7 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
   });
 });
 
-router.put("/:id", rejectUnauthenticated, (req, res) => {
-  //   const user = req.user.id;
-  const task = req.body;
-
-  const query = `
-
-  `;
-
-  console.log(`This is what I am updating:`, req.body);
-
-  pool
-    .query(query, [])
-    .then(() => res.sendStatus(204))
-    .catch((err) => {
-      console.log("Error updating task", err);
-      res.sendStatus(500);
-    });
-});
-
+//Second user will be able to join a household by using the household_key the first user has made
 router.post("/code", rejectUnauthenticated, (req, res) => {
   const queryText = `
     SELECT * FROM "household"
