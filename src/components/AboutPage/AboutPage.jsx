@@ -9,7 +9,13 @@ function AboutPage() {
   return (
     <div className="container">
       <div>
-        <p>This about page is for anyone to read!</p>
+        <h2>HeartSync: Enhance Your Relationship Every Day.</h2>
+        <p>Discover a new way to stay connected with your partner - HeartSync. 
+          Our innovative app is more than just a tool; it's a journey towards deeper 
+          understanding and synchronized living. With HeartSync, effortlessly align your 
+          schedules with our shared calendar and infuse your day with positivity. Set and track goals together or individually, transforming
+            aspirations into shared experiences. Manage day-to-day tasks seamlessly with our integrated task list.
+            Sign up today! </p>
       </div>
     </div>
   );
