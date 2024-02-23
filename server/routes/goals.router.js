@@ -68,7 +68,6 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
 });
 
 router.put("/:id", rejectUnauthenticated, (req, res) => {
-  const user = req.user.id;
   const goal = req.body;
   const goalId= req.params.id
 
@@ -82,8 +81,8 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
   WHERE
     "id"=$3;
   `;
-  console.log(`User:${user}, Goal ID: ${goalId}`);
-  console.log(`Goal Req.body:`, req.body);
+  // console.log(`User:${user}, Goal ID: ${goalId}`);
+  // console.log(`Goal Req.body:`, req.body);
   
 
   pool

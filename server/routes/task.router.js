@@ -68,8 +68,8 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
 });
 
 router.put("/:id", rejectUnauthenticated, (req, res) => {
-  const user = req.user.id;
   const task = req.body;
+  const taskId = req.params.id;
 
   const query = `
   UPDATE "task"
@@ -78,14 +78,12 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
     "is_complete"=$2
   WHERE
     "id"=$3
-    AND
-    "user_id"= $4;
   `;
 
   console.log(`This is what I am updating:`, req.body);
 
   pool
-    .query(query, [task.task_details, task.is_complete, req.params.id, user])
+    .query(query, [task.task_details, task.is_complete, taskId])
     .then(() => res.sendStatus(204))
     .catch((err) => {
       console.log("Error updating task", err);

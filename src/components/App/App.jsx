@@ -22,6 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import EditGoals from '../Goals/GoalsEdit';
 import Goals from '../Goals/Goals';
 import Tasks from '../Tasks/Task';
+import EditTask from '../Tasks/TaskEdit';
 
 import './App.css';
 
@@ -93,6 +94,14 @@ function App() {
             path="/tasks"
           >
            < Tasks />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/edit/task/:id"
+          >
+            <EditTask />
           </ProtectedRoute>
 
           <Route

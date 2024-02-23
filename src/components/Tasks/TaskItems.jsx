@@ -18,7 +18,7 @@ export default function TasksItems(props) {
   return (
     <>
         <li><input type="checkbox" />{props.task.task_details}
-        <button data-taskid={props.task.id} onClick={()=>history.push( `/edit/${props.task.id}`)}>edit</button>
+        <button data-taskid={props.task.id} onClick={()=>history.push( `/edit/task/${props.task.id}`)}>edit</button>
         <button data-taskid={props.task.id} onClick={deleteTask}> 🔴
   </button></li>
     </>

@@ -20,7 +20,7 @@ function* removeTask(action) {
 
 function* editTask(action){
   console.log("action.payload is:", action.payload);
-  try {yield axios.put(`/api/tasks/${action.payload.id}`, action.payload);
+  try {yield axios.put(`/api/tasks/${action.payload.id.id}`, action.payload);
         yield put({type: "FETCH_TASKS"});
 }catch(error) {
     console.error("ERROR in store editing:", error);
