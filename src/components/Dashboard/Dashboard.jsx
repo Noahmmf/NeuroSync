@@ -10,8 +10,7 @@ function Dashboard() {
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
-      <h3>Goals List</h3>
-      < Goals />
+      
       <LogOutButton className="btn" />
     </div>
   );

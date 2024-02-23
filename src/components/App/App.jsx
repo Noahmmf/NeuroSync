@@ -20,6 +20,8 @@ import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import EditGoals from '../Goals/GoalsEdit';
+import Goals from '../Goals/Goals';
+import Tasks from '../Tasks/Task';
 
 import './App.css';
 
@@ -31,6 +33,7 @@ function App() {
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
     dispatch({type: 'FETCH_GOALS'});
+    dispatch({type: 'FETCH_TASKS'});
   }, [dispatch]);
 
   return (
@@ -72,9 +75,24 @@ function App() {
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact
+            path="/goals"
+          >
+            <Goals />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
             path="/edit/:id"
           >
             <EditGoals />
+          </ProtectedRoute>
+          
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/tasks"
+          >
+           < Tasks />
           </ProtectedRoute>
 
           <Route

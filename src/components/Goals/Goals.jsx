@@ -76,6 +76,7 @@ export default function Goals(){
             <input onChange={handleDescriptionChange} placeholder="Goal Description" type="text" />
             <button type="submit">Submit</button>
         </form>
+        <h3>Goals List</h3>
             <ul>
             {goals.map((goal)=> <GoalsItems key={goal.id} goal={goal} />)}
             </ul>
