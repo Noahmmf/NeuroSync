@@ -9,16 +9,33 @@ export default function Household(){
     const [householdName, setHouseholdName] = useState('');
     const [householdPassword, setHouseholdPassword] = useState('');
 
+    const handleNameChange = (e) => {
+        setHouseholdName({...householdName, householdName: e.target.value});
+    }
+
+    const handlePasswordChange = (e) => {
+        setHouseholdPassword({...householdPassword, householdPassword: e.target.value});
+    }
+
+    const handleSubmit= event =>{
+        event.preventDefault();
+        dispatch({ type: "CREATE_HOUSEHOLD", payload: [householdName, householdPassword]});
+        console.log("creating new task", payload);
+
+        setHouseholdName('');
+        setHouseholdPassword('');
+    }
+
     if (newHousehold.length === 0) {
         return(
             <>
                 <h2>Please make a Household</h2>
-                <form>
+                <form onSubmit={handleSubmit}>
                     <label htmlFor="householdName">Household Name:</label>
-                    <input required placeholder="Create Name" type="text" /><br/>
+                    <input required value={householdName} onChange={handleNameChange} placeholder="Create Name" type="text" /><br/>
                     <label htmlFor="householdPassword">Create passcode:</label>
-                    <input required placeholder="Create Passcode" type="text" />
-                    <button>Create Houshold</button>
+                    <input required value={householdPassword} onChange={handlePasswordChange} placeholder="Create Passcode" type="text" />
+                    <button type="submit">Create Houshold</button>
                 </form>
             
             </>

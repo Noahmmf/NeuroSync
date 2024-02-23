@@ -45,7 +45,7 @@ export default function Goals(){
             <>
             <form onSubmit={addNewGoal}> 
             <label htmlFor="Type">Type:</label>
-            <select onChange={handleTypeChange} name="Type" id="Type">
+            <select value={goal.type} onChange={handleTypeChange} name="Type" id="Type">
                 <option value="daily">Daily</option>
                 <option value="monthly">Monthly</option>
                 <option value="Yearly">Yearly</option>
@@ -53,7 +53,7 @@ export default function Goals(){
             </select>
 
             <label htmlFor="description">Description:</label>
-            <input required onChange={handleDescriptionChange} placeholder="Goal Description" type="text" />
+            <input value={goal.description} required onChange={handleDescriptionChange} placeholder="Goal Description" type="text" />
             <button type="submit">Submit</button>
         </form>
             <p>Please enter a goal!</p>
