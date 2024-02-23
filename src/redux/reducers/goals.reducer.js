@@ -1,6 +1,8 @@
 const goalsReducer = (state = [], action) => {
     if (action.type === 'SET_GOALS'){
         return action.payload;
+    } else if (action.type === 'ADDING_NEW_GOAL'){
+      return [...state, action.payload];
     }
     return state;
   };

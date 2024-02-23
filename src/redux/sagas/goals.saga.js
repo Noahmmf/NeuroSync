@@ -11,9 +11,25 @@ function* getGoalsSaga() {
 }
 
 function* removeGoal(action) {
-  yield axios.delete(`/api/goals/${action.payload}`);
-  yield put({ type: "FETCH_GOALS" });
+  try {yield axios.delete(`/api/goals/${action.payload}`);
+  yield put({ type: "FETCH_GOALS" })}catch(error) {
+    console.error("ERROR in store removing:", error);
+  }
 }
+
+function* editGoal(action){
+  try {yield axios.put(`/api/goals/${action.payload}`);
+  yield put({type: "FETCH_GOALS"})}catch(error) {
+    console.error("ERROR in store editing:", error);
+  }
+}
+
+function* createGoal(action){
+  yield axios.post(`/api/goals/`, action.payload);
+  yield put({type: "FETCH_GOALS"}) catch(error) {
+    console.error("ERROR in store POST:", error);
+  }
+} 
 
 function* goalsSaga() {
   yield takeEvery("FETCH_GOALS", getGoalsSaga);
