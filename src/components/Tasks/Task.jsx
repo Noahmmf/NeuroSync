@@ -24,6 +24,11 @@ export default function Tasks(){
         event.preventDefault();
         dispatch({ type: "CREATE_TASK", payload: task});
         console.log("creating new task", task);
+
+        setTask({
+            task_details: '',
+            is_complete: false
+        })
     }
 
 
@@ -39,7 +44,7 @@ export default function Tasks(){
             <form onSubmit={addNewTask}> 
 
             <label htmlFor="description">Description:</label>
-            <input onChange={handleDescriptionChange} placeholder="Task Description" type="text" />
+            <input onChange={handleDescriptionChange} required value={task.task_details} placeholder="Task Description" type="text" />
             <button type="submit">Submit</button>
         </form>
             <p>Please enter a task!</p>
@@ -51,7 +56,7 @@ export default function Tasks(){
         <form onSubmit={addNewTask}> 
             
             <label htmlFor="description">Description:</label>
-            <input onChange={handleDescriptionChange} placeholder="Task Description" type="text" />
+            <input onChange={handleDescriptionChange} required value={task.task_details} placeholder="Task Description" type="text" />
             <button type="submit">Submit</button>
         </form>
         <h3>Tasks List</h3>

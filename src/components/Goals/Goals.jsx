@@ -12,7 +12,6 @@ export default function Goals(){
 
     
     const [goal, setGoal]=useState({
-        
         type: "daily",
         description: ''
     }); 
@@ -23,8 +22,14 @@ export default function Goals(){
         event.preventDefault();
         dispatch({ type: "CREATE_GOAL", payload: goal});
         console.log("creating new goal", goal);
-
+      
+        setGoal({
+            type: "daily",
+            description: ''
+        })
     }
+
+ 
 
     const handleTypeChange = (e) => {
         setGoal({...goal, type: e.target.value});
@@ -48,7 +53,7 @@ export default function Goals(){
             </select>
 
             <label htmlFor="description">Description:</label>
-            <input onChange={handleDescriptionChange} placeholder="Goal Description" type="text" />
+            <input required onChange={handleDescriptionChange} placeholder="Goal Description" type="text" />
             <button type="submit">Submit</button>
         </form>
             <p>Please enter a goal!</p>
@@ -59,7 +64,7 @@ export default function Goals(){
         <>
         <form onSubmit={addNewGoal}> 
             <label htmlFor="Type">Type:</label>
-            <select onChange={handleTypeChange} name="Type" id="Type">
+            <select value={goal.type} onChange={handleTypeChange} name="Type" id="Type">
                 <option value="daily">Daily</option>
                 <option value="monthly">Monthly</option>
                 <option value="Yearly">Yearly</option>
@@ -67,7 +72,7 @@ export default function Goals(){
             </select>
 
             <label htmlFor="description">Description:</label>
-            <input onChange={handleDescriptionChange} placeholder="Goal Description" type="text" />
+            <input onChange={handleDescriptionChange} value={goal.description} placeholder="Goal Description" type="text" />
             <button type="submit">Submit</button>
         </form>
         <h3>Goals List</h3>

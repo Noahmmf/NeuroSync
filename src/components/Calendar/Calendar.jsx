@@ -12,7 +12,7 @@ export default function Calendar(){
 const dispatch= useDispatch();
   const events = useSelector(store => store.event[0]);
 
-  console.log(`these are the events:`, events);
+  // console.log(`these are the events:`, events);
 
 
   return (

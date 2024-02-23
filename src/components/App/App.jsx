@@ -23,6 +23,7 @@ import EditGoals from '../Goals/GoalsEdit';
 import Goals from '../Goals/Goals';
 import Tasks from '../Tasks/Task';
 import EditTask from '../Tasks/TaskEdit';
+import Household from '../Household/Household';
 
 
 import './App.css';
@@ -36,7 +37,8 @@ function App() {
     dispatch({ type: 'FETCH_USER' });
     dispatch({type: 'FETCH_GOALS'});
     dispatch({type: 'FETCH_TASKS'});
-    dispatch({type: 'GET_EVENTS'})
+    dispatch({type: 'GET_EVENTS'});
+    dispatch({type: 'FETCH_HOUSEHOLD'})
   }, [dispatch]);
 
   return (
@@ -73,7 +75,7 @@ function App() {
             exact
             path="/info"
           >
-            <InfoPage />
+            <Household />
           </ProtectedRoute>
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage

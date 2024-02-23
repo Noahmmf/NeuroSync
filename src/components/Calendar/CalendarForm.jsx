@@ -36,7 +36,7 @@ const handleClick = () => {
       end: date + 'T' + end,
       color: color
     };
-   console.log(`this is what im sending`, newEvent);
+//    console.log(`this is what im sending`, newEvent);
 
     const action = {
       type: "CREATE_EVENT",
@@ -49,7 +49,7 @@ const handleClick = () => {
   };
 
 
-//sample obj { title: 'Meeting', start: new Date(), groupId: 2 }
+
 
     return(
         <>
