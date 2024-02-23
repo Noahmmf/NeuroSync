@@ -70,28 +70,28 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
 router.put("/:id", rejectUnauthenticated, (req, res) => {
   const user = req.user.id;
   const goal = req.body;
+  const goalId= req.params.id
 
+  //removed "is_complete" from query
   const query = `
   UPDATE "goals"
   SET 
     "type"=$1,
-    "description"=$2,
-    "is_complete"=$3
+    "description"=$2
+ 
   WHERE
-    "id"=$4
-    AND
-    "user_id"= $5;
+    "id"=$3;
   `;
-
-  console.log(`This is what I am updating:`, req.body);
+  console.log(`User:${user}, Goal ID: ${goalId}`);
+  console.log(`Goal Req.body:`, req.body);
+  
 
   pool
     .query(query, [
       goal.type,
       goal.description,
-      goal.is_complete,
-      req.params.id,
-      user,
+      // goal.is_complete,
+      goalId
     ])
     .then(() => res.sendStatus(204))
     .catch((err) => {
