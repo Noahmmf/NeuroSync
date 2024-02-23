@@ -10,14 +10,9 @@ Get request for goals section. rejectUnauthenticated user will reject anyone
 who is not the logged in user. 
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
-const household= req.body;
+// const household= req.body;
 const user= req.user.id;
 
-  // const queryText = `  SELECT  "household_members".*, "household".*, jsonb_agg("calendar") AS "calendar" FROM "household_members"
-  // JOIN "household" ON "household_members"."household_id" = "household"."id"
-  // JOIN "calendar" ON "household"."id" = "calendar"."cal_household_id" 
-  // WHERE "household_id"=$1
-  // GROUP BY "household_members"."user_id", "household_members"."household_id", "household"."id";`;
 
   const queryText = `SELECT  "household_members".*, "household".*, jsonb_agg("calendar") AS "calendar" FROM "household_members"
   JOIN "household" ON "household_members"."household_id" = "household"."id"
@@ -27,7 +22,6 @@ const user= req.user.id;
   GROUP BY "household_members"."user_id", "household_members"."household_id", "household"."id";`;
 
   console.log(`USER ID IS :`, user);
-  // console.log(`HOUSEHOLD IS:`, household);
 
   pool
     .query(queryText, [user])

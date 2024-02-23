@@ -24,6 +24,7 @@ import Goals from '../Goals/Goals';
 import Tasks from '../Tasks/Task';
 import EditTask from '../Tasks/TaskEdit';
 
+
 import './App.css';
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
     dispatch({ type: 'FETCH_USER' });
     dispatch({type: 'FETCH_GOALS'});
     dispatch({type: 'FETCH_TASKS'});
+    dispatch({type: 'GET_EVENTS'})
   }, [dispatch]);
 
   return (

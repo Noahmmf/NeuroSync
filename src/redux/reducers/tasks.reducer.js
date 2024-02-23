@@ -9,6 +9,5 @@ const tasksReducer = (state = [], action) => {
     return state;
   };
 
-  // user will be on the redux state at:
-// state.tasks
+ 
   export default tasksReducer;

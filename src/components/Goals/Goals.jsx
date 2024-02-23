@@ -2,7 +2,7 @@ import { useState } from "react";
 import GoalsItems from "./GoalsItems"
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+
 
 
 export default function Goals(){
@@ -17,7 +17,7 @@ export default function Goals(){
         description: ''
     }); 
 
-    // console.log("this is what I am sending", goal);
+  
 
     const addNewGoal = event =>{
         event.preventDefault();
@@ -25,12 +25,6 @@ export default function Goals(){
         console.log("creating new goal", goal);
 
     }
-
-      //targets the click to edit button using datafrom button.
-//   const editGoal = (e) => {
-//     dispatch({type: "EDIT_GOAL", payload: goal})
-//     console.log("this is what I want to send:", goal);
-//   }
 
     const handleTypeChange = (e) => {
         setGoal({...goal, type: e.target.value});
