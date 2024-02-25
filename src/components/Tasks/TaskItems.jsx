@@ -15,17 +15,16 @@ export default function TasksItems(props) {
   };
 
   //state for completion of task
-  const [complete, setComplete]= useState('false');
+  const [complete, setComplete]= useState(false);
 
+
+//creates a new object for editing complete/incomplete
  const newtask={
   id: props.task.id,
   task_details: props.task.task_details,
   is_complete: complete
  };
- console.log("This is the newtask:", newtask);
-  
 
-console.log(`Is task complete:`, complete);
 
 const dispatchCompletion= e=>{
   e.preventDefault();
@@ -38,7 +37,6 @@ const dispatchCompletion= e=>{
   return (
     <>
         <li data-taskid={props.task.id} onClick={( dispatchCompletion )}>{props.task.task_details}
-        {/* <button data-taskid={props.task.id} onClick={()=>history.push( `/edit/task/${props.task.id}`)}>edit</button> */}
         <button data-taskid={props.task.id} onClick={deleteTask}> 🔴
   </button></li>
     </>
