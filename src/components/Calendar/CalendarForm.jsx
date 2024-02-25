@@ -8,8 +8,6 @@ export default function Form(){
     const household = useSelector(store => store.householdReducer[0]);
     const calendar = useSelector(store => store)
 
-    // console.log("THIS IS THE HOUSEHOLD STORE", household);
-
     
 
 const [title, setTitle] = useState('');
@@ -18,7 +16,7 @@ const [end, setEnd]= useState('');
 const [color, setColor]=useState('red');
 const [date, setDate]=useState('');
 
-console.log(`start: ${JSON.stringify(start)} and end: ${end[0]}`)
+
 
 console.log(`This is what I'm doing: `  )
 
@@ -41,15 +39,7 @@ const handleDateChange = (e) => {
 const handleSubmit = (event) => {
     event.preventDefault();
 
-    if(cal_household_id === undifined){
-      let newEvent = {
-      title: title,
-      date: date,
-      start: date + 'T' + start,
-      end: date + 'T' + end,
-      color: color
-    };
-    }else{
+ 
     const newEvent = {
       cal_household_id: household.id,
       title: title,
@@ -57,7 +47,6 @@ const handleSubmit = (event) => {
       start: date + 'T' + start,
       end: date + 'T' + end,
       color: color
-    };
   };
    console.log(`this is THE EVENT !!!!!!!!!!what im sending`, newEvent);
 
@@ -90,6 +79,10 @@ const handleSubmit = (event) => {
               <option value="red">red</option>
               <option value="blue">blue</option>
               <option value="pink">pink</option>
+              <option value="yellow">yellow</option>
+              <option value="green">green</option>
+              <option value="#ffebcd">Blanched Almond</option>
+              <option value="purple">purple</option>
             </select>
             <button onClick={handleSubmit}>Submit</button>
         </form>

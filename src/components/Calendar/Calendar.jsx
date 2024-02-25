@@ -10,13 +10,13 @@ import Form from './CalendarForm'
 
 export default function Calendar(){
 const dispatch= useDispatch();
-  const event = useSelector(store => store.event[0]);
+  const event = useSelector(store => store.event[0].calendar);
 
-  // console.log(`these are the events:`, events);
+  console.log(`these are the events:`, event.calendar);
 
 
   const handleEdit=(e)=>{
-    console.log("Clicking this thing", event[0].id);
+    console.log("Clicking this thing", e.target.id);
 
   }
 

@@ -11,7 +11,7 @@ export default function JoinHousehold(){
     const household = useSelector(store => store.householdReducer[0]);
     const newHousehold = useSelector(store => store.householdReducer);
 
-    console.log('household Name:', newHousehold);
+    // console.log('household Name:', newHousehold);
 
     const [joinHousehold, setJoinHousehold] = useState({
         name:'',
@@ -31,11 +31,9 @@ export default function JoinHousehold(){
     const handleSubmit= event =>{
         event.preventDefault();
       
-      if(newHousehold.name === undefined){
-        alert('No household found with that username or password')
-      }else{
+     
           dispatch({ type: "JOIN_HOUSEHOLD", payload: joinHousehold});
-      }
+      
         console.log("creating new household", joinHousehold);
 
         

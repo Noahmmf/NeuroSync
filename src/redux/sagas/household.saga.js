@@ -29,10 +29,19 @@ function* createHousehold(action){
         }
       } 
 
+      function* removeHousehold(action) {
+        try {yield axios.delete(`/api/household/${action.payload}`);
+        console.log("this is the payload",action.payload);
+        yield put({ type: "FETCH_HOUSEHOLD" })}catch(error) {
+          console.error("ERROR in store removing:", error);
+        }
+      }
+
 function* householdSaga() {
     yield takeEvery("FETCH_HOUSEHOLD", getHousehold);
     yield takeEvery("CREATE_HOUSEHOLD", createHousehold);
     yield takeEvery("JOIN_HOUSEHOLD", joinHousehold);
+    yield takeEvery("DELETE_HOUSEHOLD", removeHousehold);
   }
 
   export default householdSaga;
