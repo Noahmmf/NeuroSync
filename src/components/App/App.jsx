@@ -24,6 +24,8 @@ import Goals from '../Goals/Goals';
 import Tasks from '../Tasks/Task';
 import EditTask from '../Tasks/TaskEdit';
 import Household from '../Household/Household';
+import CreateHousehold from '../Household/CreateHoushold';
+import JoinHousehold from '../Household/JoinHousehold';
 
 
 import './App.css';
@@ -76,6 +78,20 @@ function App() {
             path="/info"
           >
             <Household />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/createhousehold"
+          >
+            <CreateHousehold />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/joinhousehold"
+          >
+            <JoinHousehold />
           </ProtectedRoute>
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage

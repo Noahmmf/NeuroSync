@@ -19,9 +19,20 @@ function* createHousehold(action){
       }
     } 
 
+
+    //For user joining a pre-existing household with household pass key
+    function* joinHousehold(action){
+      // console.log("this sis the ACTION PAYLOAD", action.payload);
+        try { yield axios.post(`/api/household/code`, action.payload);
+        yield put({type: "FETCH_HOUSEHOLD"})} catch(error) {
+          console.error("ERROR in store POST:", error);
+        }
+      } 
+
 function* householdSaga() {
     yield takeEvery("FETCH_HOUSEHOLD", getHousehold);
     yield takeEvery("CREATE_HOUSEHOLD", createHousehold);
+    yield takeEvery("JOIN_HOUSEHOLD", joinHousehold);
   }
 
   export default householdSaga;

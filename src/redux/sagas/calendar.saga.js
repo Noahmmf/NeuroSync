@@ -4,7 +4,6 @@ import axios from "axios";
 function* getCalenadrEvent(){
     try{
         const response = yield axios.get('api/calendar');
-        // console.log("response.data", response.data[0].calendar)
         yield put({ type: "ADD_EVENT", payload: response.data[0].calendar})
     }catch (error) {
         console.error("ERROR in store GET:", error);

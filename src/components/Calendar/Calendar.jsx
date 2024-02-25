@@ -10,10 +10,17 @@ import Form from './CalendarForm'
 
 export default function Calendar(){
 const dispatch= useDispatch();
-  const events = useSelector(store => store.event[0]);
+  const event = useSelector(store => store.event[0]);
 
   // console.log(`these are the events:`, events);
 
+
+  const handleEdit=(e)=>{
+    console.log("Clicking this thing", event[0].id);
+
+  }
+
+  
 
   return (
     <div>
@@ -24,15 +31,19 @@ const dispatch= useDispatch();
         weekends={true}
         editable={true}
         selectable={true}
+        nowIndicator={true}
+        handleWindowResize={true}
+        
+        // themeSystem={'bootstrap 5'}
         height={450}
-        events={events}
+        events={event}
         eventContent={renderEventContent}
         headerToolbar={{
           left: 'prev,next today',
           center: 'title',
           right: 'list,timeGridWeek,timeGridDay'
         }}
-       
+       eventClick={handleEdit}
 
         
       />
