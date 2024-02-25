@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 
-export default function Form(){
+export default function EditEvent(){
     const dispatch= useDispatch();
 
     // used for the household ID to render only users who are in current household
@@ -77,11 +77,9 @@ const handleSubmit = (event) => {
     
   };
 
-
-
-
     return(
-        <>
+        
+         <>
         <form>
           <label>Event title: </label>
             <input type="text" placeholder="title" onChange={handleTitleChange} /><br/>
@@ -106,5 +104,6 @@ const handleSubmit = (event) => {
             <button onClick={handleSubmit}>Submit</button>
         </form>
         </>
+        
     )
 }

@@ -6,24 +6,41 @@ import { useDispatch, useSelector } from 'react-redux'
 import interactionPlugin from '@fullcalendar/interaction';
 import Form from './CalendarForm'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 
 
 
 export default function Calendar(){
 const dispatch= useDispatch();
 const eventID = useParams();
+const history = useHistory();
+
+  
 
   const event = useSelector(store => store.event[0].calendar);
 
-  console.log(`these are the events:`, event.calendar);
+  // console.log(`these are the events:`, event);
 
 
-  const handleEdit=(e)=>{
-    console.log("Clicking this thing", eventID);
+  const handleEdit=(clickInfo)=>{
+    const eventId= clickInfo.event.id
+
+    console.log("Clicking this thing", eventId);
+    history.push( `/editevent/${eventId}`);
 
   }
 
-  
+  const deleteEvent = (clickInfo)=>{
+    const eventId = clickInfo.event.id;
+
+    if(confirm("Do you want to delete this event?") == true){
+      dispatch({ type: "DELETE_EVENT", payload: eventId });
+    }else{
+      return;
+    }
+
+  }
+
 
   return (
     <div>
@@ -36,9 +53,10 @@ const eventID = useParams();
         selectable={true}
         nowIndicator={true}
         handleWindowResize={true}
-        
+        eventTextColor='black'
         // themeSystem={'bootstrap 5'}
         height={450}
+        // selectMirror={true}
         events={event}
         eventContent={renderEventContent}
         headerToolbar={{
@@ -46,8 +64,8 @@ const eventID = useParams();
           center: 'title',
           right: 'list,timeGridWeek,timeGridDay'
         }}
-       eventClick={handleEdit}
-
+        eventClick={deleteEvent}
+       
         
       />
     </div>
