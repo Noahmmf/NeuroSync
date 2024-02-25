@@ -36,15 +36,15 @@ const user= req.user.id;
  * POST route template
  */
 router.post("/", rejectUnauthenticated, (req, res) => {
-  const queryText = `INSERT INTO "calendar" ("cal_household_id","title", "date",  "start", "end", "color") 
-  VALUES ($1, $2, $3, $4, $5, $6);`;
+  const queryText = `INSERT INTO "calendar" ("allDay", "cal_household_id","title", "date",  "start", "end", "color") 
+  VALUES ($1, $2, $3, $4, $5, $6, $7);`;
 
   console.log(`here is the insert for Calendar:`, req.body);
 
   const cBody= req.body;
 
   pool
-    .query(queryText, [cBody.cal_household_id, cBody.title, cBody.date, cBody.start, cBody.end, cBody.color])
+    .query(queryText, [cBody.allDay, cBody.cal_household_id, cBody.title, cBody.date, cBody.start, cBody.end, cBody.color])
     .then(() => res.sendStatus(201))
     .catch((err) => {
       console.log("Can't add to Calendar", err);
@@ -79,18 +79,19 @@ router.put("/:id", rejectUnauthenticated, (req, res) => {
   const query = `
   UPDATE "calendar"
   SET 
-  "date"=$1,
-  "title"=$2,
-  "start"=$3,
-  "end"=$4,
-  "color"=$5
-  WHERE "id" = $6
+  "allDay"=$1,
+  "date"=$2,
+  "title"=$3,
+  "start"=$4,
+  "end"=$5,
+  "color"=$6
+  WHERE "id" = $7
   `;
 
   console.log(`This is what I am updating:`, cal);
 
   pool
-    .query(query, [cal.date, cal.title, cal.start, cal.end, cal.color, req.params.id])
+    .query(query, [cal.allDay, cal.date, cal.title, cal.start, cal.end, cal.color, req.params.id])
     .then(() => res.sendStatus(204))
     .catch((err) => {
       console.log("Error updating task", err);

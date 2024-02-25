@@ -3,13 +3,15 @@ import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function EditGoals(){
+    //react variables
     const dispatch = useDispatch();
     const history = useHistory();
-
+    //getting ID for params. 
     const goalId = useParams();
 
-    console.log("goal ID:", goalId);
 
+
+    //handles the input changes
     const handleTypeChange = (e) => {
         setGoal({...goal, type: e.target.value});
     }
@@ -28,7 +30,7 @@ export default function EditGoals(){
       const editGoal = (e) => {
         e.preventDefault();
         dispatch({type: "EDIT_GOAL", payload: goal})
-        console.log("this is what I want to send:", goal);
+        // console.log("this is what I want to send:", goal);
         setGoal('');
         history.push('/user')
       }

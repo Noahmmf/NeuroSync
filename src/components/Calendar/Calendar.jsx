@@ -5,18 +5,21 @@ import listPlugin from '@fullcalendar/list'
 import { useDispatch, useSelector } from 'react-redux'
 import interactionPlugin from '@fullcalendar/interaction';
 import Form from './CalendarForm'
+import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
 
 
 
 export default function Calendar(){
 const dispatch= useDispatch();
+const eventID = useParams();
+
   const event = useSelector(store => store.event[0].calendar);
 
   console.log(`these are the events:`, event.calendar);
 
 
   const handleEdit=(e)=>{
-    console.log("Clicking this thing", e.target.id);
+    console.log("Clicking this thing", eventID);
 
   }
 

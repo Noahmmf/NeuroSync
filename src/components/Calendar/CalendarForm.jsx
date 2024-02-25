@@ -15,6 +15,11 @@ const [start, setStart] = useState('');
 const [end, setEnd]= useState('');
 const [color, setColor]=useState('red');
 const [date, setDate]=useState('');
+const [allday, setAllday]=useState(false);
+
+
+
+console.log("all day value =", allday)
 
 
 
@@ -36,11 +41,29 @@ const handleDateChange = (e) => {
     setDate( e.target.value);
 }
 
+const handleAllDayChange= (e) => {
+    setAllday(true);
+}
+
 const handleSubmit = (event) => {
     event.preventDefault();
 
- 
-    const newEvent = {
+    let newEvent; // Declare newEvent here
+
+
+  if( allday === true){
+     newEvent = {
+      allDay: allday,
+      cal_household_id: household.id,
+      title: title,
+      date: date,
+      start: date,
+      end: date,
+      color: color
+  };
+  }else if(allday === false){
+     newEvent = {
+      allDay: allday,
       cal_household_id: household.id,
       title: title,
       date: date,
@@ -48,7 +71,9 @@ const handleSubmit = (event) => {
       end: date + 'T' + end,
       color: color
   };
-   console.log(`this is THE EVENT !!!!!!!!!!what im sending`, newEvent);
+  }
+    
+  //  console.log(`this is THE EVENT !!!!!!!!!!what im sending`, newEvent);
 
     const action = {
       type: "CREATE_EVENT",
@@ -56,8 +81,7 @@ const handleSubmit = (event) => {
     };
     dispatch(action);
 
-    setTitle("");
-    setStart("");
+    
   };
 
 
@@ -70,6 +94,8 @@ const handleSubmit = (event) => {
             <input type="text" placeholder="title" onChange={handleTitleChange} /><br/>
             <label>Day: </label>
             <input type="date" placeholder="time"  onChange={handleDateChange} /><br/>
+            <label htmlFor="allDay">AllDay:</label>
+            <input type="checkbox" onChange={handleAllDayChange}/>
             <label>Start Time: </label>
             <input type="time" placeholder="time"  onChange={handleStartChange} />
             <label>End Time: </label>

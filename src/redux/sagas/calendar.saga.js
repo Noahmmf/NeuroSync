@@ -14,7 +14,7 @@ function* getCalenadrEvent(){
 function* createCalendarEvent(action){
   // console.log("this sis the ACTION PAYLOAD", action.payload);
     try { yield axios.post(`/api/calendar`, action.payload);
-    yield put({type: "FETCH_EVENTS"})} catch(error) {
+    yield put({type: "GET_EVENTS"})} catch(error) {
       console.error("ERROR in store POST:", error);
     }
   } 
@@ -22,7 +22,7 @@ function* createCalendarEvent(action){
   function* editCalendar(action){
     try{
         yield axios.put(`/api/calendar/${action.payload.id}`, action.payload);
-        yield put({type: "FETCH_EVENTS"})
+        yield put({type: "GET_EVENTS"})
     }catch(error) {
         console.error("ERROR in store editing:", error);
       }
@@ -31,7 +31,7 @@ function* createCalendarEvent(action){
   function* removeCalendarEvent(action){
     try {yield axios.delete(`/api/calendar/${action.payload}`);
     // console.log("this is the payload", action.payload);
-    yield put({ type: "FETCH_EVENTS" })}catch(error) {
+    yield put({ type: "GET_EVENTS" })}catch(error) {
     console.error("ERROR in store removing:", error);
   }
   }
