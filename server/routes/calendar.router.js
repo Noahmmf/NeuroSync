@@ -32,10 +32,10 @@ const user= req.user.id;
     });
 });
 
-router.get("/:id", rejectUnauthenticated, (req, res) => {
+router.get("/event", rejectUnauthenticated, (req, res) => {
   // const household= req.body;
   const user= req.user.id;
-  const eventId = req.params.id;
+  const eventId = req.body.id;
   
     const queryText = `SELECT  "household_members".*, "household".*, jsonb_agg("calendar") AS "calendar" FROM "household_members"
     JOIN "household" ON "household_members"."household_id" = "household"."id"
@@ -44,10 +44,10 @@ router.get("/:id", rejectUnauthenticated, (req, res) => {
     WHERE "user_id"=$1) AND "calendar"."id"=$2
     GROUP BY "household_members"."user_id", "household_members"."household_id", "household"."id";`;
   
-    console.log(`USER ID IS :`, user, `and event ID is `, eventId);
+    console.log(`USER ID IS :`, user, `and event ID is `, req.params.id);
   
     pool
-      .query(queryText, [user, even])
+      .query(queryText, [user, req.body.id])
       .then((result) => res.send(result.rows))
       .catch((err) => {
         console.log("Error in GET server:", err);

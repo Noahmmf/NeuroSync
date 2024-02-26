@@ -1,3 +1,7 @@
+.fc-event-main{
+  cursor: pointer;
+}
+
 html,
 body,
 #react-root {

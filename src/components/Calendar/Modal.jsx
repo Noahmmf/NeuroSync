@@ -29,7 +29,7 @@ const [color, setColor]=useState('red');
 const [date, setDate]=useState('');
 const [allday, setAllday]=useState(false);
 
-console.log(allday);
+// console.log(allday);
 
 //handles change when inputs are being entered
 const handleTitleChange = (e) => {

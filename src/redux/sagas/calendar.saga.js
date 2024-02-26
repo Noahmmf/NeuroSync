@@ -1,7 +1,7 @@
 import { put, takeEvery } from "redux-saga/effects";
 import axios from "axios";
 
-function* getCalenadrEvent(){
+function* getCalendarEvent(){
     try{
         const response = yield axios.get('api/calendar');
         console.log("this is the response.date for the calendar events", response.data);
@@ -13,8 +13,8 @@ function* getCalenadrEvent(){
 
 function* getOneEvent(){
   try{
-    const response = yield axios.get(`api/calendar/${action.payload.id}`);
-    console.log("this is the response.date", response.data);
+    const response = yield axios.get(`api/calendar/event`);
+    console.log("this is the DATE YOU SELECTED", response.data);
     yield put({ type: "GRAB_ONE_EVENT", payload: response.data})
 }catch (error) {
     console.error("ERROR in store GET:", error);
@@ -47,10 +47,11 @@ function* createCalendarEvent(action){
   }
 
   function* calendarSaga() {
-    yield takeEvery("GET_EVENTS", getCalenadrEvent);
+    yield takeEvery("GET_EVENTS", getCalendarEvent);
     yield takeEvery("DELETE_EVENT", removeCalendarEvent);
     yield takeEvery("CREATE_EVENT", createCalendarEvent);
     yield takeEvery("EDIT_EVENT", editCalendar);
+    yield takeEvery("GET_ONE_EVENT", getOneEvent);
   } 
 
   export default calendarSaga;

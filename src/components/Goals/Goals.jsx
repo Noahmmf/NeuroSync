@@ -41,6 +41,40 @@ export default function Goals(){
     }
 
 
+    
+    const [daily, setDaily] = useState(true);
+    const [monthly, setMonthly] = useState(false);
+    const [yearly, setYearly] = useState(false);
+    const [fiveYear, setFiveYear]= useState(false);
+    
+    const renderDaily = e => {
+        setDaily(true);
+        setMonthly(false);
+        setYearly(false);
+        setFiveYear(false);
+    }
+    
+    const renderMonthly = e => {
+        setDaily(false);
+        setMonthly(true);
+        setYearly(false);
+        setFiveYear(false);
+    }
+    
+    const renderYearly = e => {
+        setDaily(false);
+        setMonthly(false);
+        setYearly(true);
+        setFiveYear(false);
+    }
+    
+    const renderFiveYear = e => {
+        setDaily(false);
+        setMonthly(false);
+        setYearly(false);
+        setFiveYear(true);
+    }
+    
     if (goals.length === 0) {
         return(
             <>
@@ -57,44 +91,11 @@ export default function Goals(){
             <input value={goal.description} required onChange={handleDescriptionChange} placeholder="Goal Description" type="text" />
             <Button type="submit">Submit</Button>
         </form>
+        <Button onClick={renderDaily}>Daily</Button> <Button onClick={renderMonthly} >Monthly</Button> <Button onClick={renderYearly}>Yearly</Button> <Button onClick={renderFiveYear}>5 Year</Button>
             <p>Please enter a goal!</p>
             </>
         )
     }
-
-    const [daily, setDaily] = useState(true);
-    const [monthly, setMonthly] = useState(false);
-    const [yearly, setYearly] = useState(false);
-    const [fiveYear, setFiveYear]= useState(false);
-
-    const renderDaily = e => {
-        setDaily(true);
-        setMonthly(false);
-        setYearly(false);
-        setFiveYear(false);
-    }
-
-    const renderMonthly = e => {
-        setDaily(false);
-        setMonthly(true);
-        setYearly(false);
-        setFiveYear(false);
-    }
-
-    const renderYearly = e => {
-        setDaily(false);
-        setMonthly(false);
-        setYearly(true);
-        setFiveYear(false);
-    }
-
-    const renderFiveYear = e => {
-        setDaily(false);
-        setMonthly(false);
-        setYearly(false);
-        setFiveYear(true);
-    }
-    
     return (
         <>
         <form onSubmit={addNewGoal}> 
