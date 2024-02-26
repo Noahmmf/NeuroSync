@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export default function Form(){
     const dispatch= useDispatch();
@@ -77,6 +78,9 @@ const handleSubmit = (event) => {
     
   };
 
+  useEffect(() => {
+    dispatch({type: 'GET_EVENTS'});
+  }, []);
 
 
 

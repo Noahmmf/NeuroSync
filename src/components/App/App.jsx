@@ -22,7 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import EditGoals from '../Goals/GoalsEdit';
 import Goals from '../Goals/Goals';
 import Tasks from '../Tasks/Task';
-import EditTask from '../Tasks/TaskEdit';
+// import EditTask from '../Tasks/TaskEdit';
 import Household from '../Household/Household';
 import CreateHousehold from '../Household/CreateHoushold';
 import JoinHousehold from '../Household/JoinHousehold';
@@ -123,15 +123,7 @@ function App() {
           >
            < Tasks />
           </ProtectedRoute>
-
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/edit/task/:id"
-          >
-            <EditTask />
-          </ProtectedRoute>
-
+          
           <Route
             exact
             path="/login"

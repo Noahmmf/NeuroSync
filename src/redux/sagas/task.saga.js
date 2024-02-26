@@ -12,14 +12,12 @@ function* getTasksSaga() {
 
 function* removeTask(action) {
   try {yield axios.delete(`/api/tasks/${action.payload}`);
-  // console.log("this is the payload",action.payload);
   yield put({ type: "FETCH_TASKS" })}catch(error) {
     console.error("ERROR in store removing:", error);
   }
 }
 
 function* editTask(action){
-  // console.log("action.payload is:", action.payload.id);
   try {yield axios.put(`/api/tasks/${action.payload.id}`, action.payload);
         yield put({type: "FETCH_TASKS"});
 }catch(error) {

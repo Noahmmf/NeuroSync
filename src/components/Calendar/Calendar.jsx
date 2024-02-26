@@ -4,9 +4,10 @@ import timeGridDay from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list'
 import { useDispatch, useSelector } from 'react-redux'
 import interactionPlugin from '@fullcalendar/interaction';
-import Form from './CalendarForm'
+
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
+import Example from './Modal'
 
 
 
@@ -41,10 +42,16 @@ const history = useHistory();
 
   }
 
+  
+  
+
+  console.log("this is what is changing", )
+
 
   return (
     <div>
-        <Form />
+      <Example />
+       
       <FullCalendar
         plugins={[dayGridPlugin, timeGridDay, listPlugin, interactionPlugin]}
         initialView='timeGridDay'
