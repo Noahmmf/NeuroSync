@@ -10,6 +10,9 @@ export default function CreateHousehold(){
 
     const household = useSelector(store => store.householdReducer[0]);
     const newHousehold = useSelector(store => store.householdReducer);
+    // const checkHousehold= useSelector(store => store.setHouseholdNamesReducer);
+
+    // console.log(`These are households`, checkHousehold);
 
     const [createNewHousehold, setCreateNewHousehold] = useState({
         name:'',
@@ -28,8 +31,10 @@ export default function CreateHousehold(){
    
     const handleSubmit= event =>{
         event.preventDefault();
-        dispatch({ type: "CREATE_HOUSEHOLD", payload: createNewHousehold});
-        console.log("creating new household", createNewHousehold);
+    
+            dispatch({ type: "CREATE_HOUSEHOLD", payload: createNewHousehold});
+            console.log("creating new household", createNewHousehold);
+        
 
         setCreateNewHousehold({
             name:'',

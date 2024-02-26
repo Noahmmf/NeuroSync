@@ -25,6 +25,19 @@ router.get("/", rejectUnauthenticated, (req, res) => {
     });
 });
 
+router.get("/names", rejectUnauthenticated, (req, res) => {
+  const queryText = ` SELECT "household"."name" FROM "household";
+ `;
+
+  pool
+    .query(queryText)
+    .then((result) => res.send(result.rows))
+    .catch((err) => {
+      console.log("Error in GET server:", err);
+      res.sendStatus(500);
+    });
+});
+
 /**
  * POST route for /household
  */
@@ -71,23 +84,17 @@ router.post("/", rejectUnauthenticated, (req, res) => {
  * Delete the Household in "household" table and users in the household in "household_members" table.
  */
 router.delete("/:id", rejectUnauthenticated, (req, res) => {
+  const userId = req.user.id;
+
   const householdId = req.params.id;
   // Query to delete household members
   const deleteMembersQuery = `
     DELETE FROM "household_members"
-    WHERE "household_id" = $1;
+    WHERE "user_id" = $1;
   `;
 
-  //first query to DB to delete "household_members"
-  pool.query(deleteMembersQuery, [householdId]).then((result) => {
-    // Query to delete household
-    const deleteHouseholdQuery = `
-    DELETE FROM "household"
-    WHERE "id" = $1;
-    `;
-    //Second query to detele "household"
     pool
-      .query(deleteHouseholdQuery, [householdId])
+      .query(deleteMembersQuery, [userId])
       .then((result) => {
         res.sendStatus(204);
       })
@@ -96,7 +103,7 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
         res.sendStatus(500);
       });
   });
-});
+// });
 
 //Second user will be able to join a household by using the household_key the first user has made
 router.post("/code", rejectUnauthenticated, (req, res) => {
@@ -133,5 +140,6 @@ router.post("/code", rejectUnauthenticated, (req, res) => {
         });
     });
 });
+
 
 module.exports = router;

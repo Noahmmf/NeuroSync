@@ -5,6 +5,5 @@ const householdReducer = (state = [], action) => {
     return state;
   };
 
-  // user will be on the redux state at:
-// state.goals
+
   export default householdReducer;

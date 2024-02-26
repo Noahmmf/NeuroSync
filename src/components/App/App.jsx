@@ -41,7 +41,8 @@ function App() {
     dispatch({type: 'FETCH_GOALS'});
     dispatch({type: 'FETCH_TASKS'});
     dispatch({type: 'GET_EVENTS'});
-    dispatch({type: 'FETCH_HOUSEHOLD'})
+    dispatch({type: 'FETCH_HOUSEHOLD'});
+    dispatch({type: 'GET_ALL_NAMES'})
   }, [dispatch]);
 
   return (

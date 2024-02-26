@@ -32,6 +32,30 @@ const user= req.user.id;
     });
 });
 
+router.get("/:id", rejectUnauthenticated, (req, res) => {
+  // const household= req.body;
+  const user= req.user.id;
+  const eventId = req.params.id;
+  
+    const queryText = `SELECT  "household_members".*, "household".*, jsonb_agg("calendar") AS "calendar" FROM "household_members"
+    JOIN "household" ON "household_members"."household_id" = "household"."id"
+    JOIN "calendar" ON "household"."id" = "calendar"."cal_household_id" 
+    WHERE "household_id" = (SELECT "household_id" FROM "household_members"
+    WHERE "user_id"=$1) AND "calendar"."id"=$2
+    GROUP BY "household_members"."user_id", "household_members"."household_id", "household"."id";`;
+  
+    console.log(`USER ID IS :`, user, `and event ID is `, eventId);
+  
+    pool
+      .query(queryText, [user, even])
+      .then((result) => res.send(result.rows))
+      .catch((err) => {
+        console.log("Error in GET server:", err);
+        res.sendStatus(500);
+      });
+  });
+  
+
 /**
  * POST route template
  */
@@ -42,6 +66,7 @@ router.post("/", rejectUnauthenticated, (req, res) => {
   console.log(`here is the insert for Calendar:`, req.body);
 
   const cBody= req.body;
+
 
   pool
     .query(queryText, [cBody.allDay, cBody.cal_household_id, cBody.title, cBody.date, cBody.start, cBody.end, cBody.color])

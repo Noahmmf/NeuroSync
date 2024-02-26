@@ -4,11 +4,21 @@ import axios from "axios";
 function* getCalenadrEvent(){
     try{
         const response = yield axios.get('api/calendar');
-        console.log("this is the response.date", response.data);
-        yield put({ type: "ADD_EVENT", payload: response.data[0]})
+        console.log("this is the response.date for the calendar events", response.data);
+        yield put({ type: 'ADD_EVENT', payload: response.data})
     }catch (error) {
         console.error("ERROR in store GET:", error);
       }
+}
+
+function* getOneEvent(){
+  try{
+    const response = yield axios.get(`api/calendar/${action.payload.id}`);
+    console.log("this is the response.date", response.data);
+    yield put({ type: "GRAB_ONE_EVENT", payload: response.data})
+}catch (error) {
+    console.error("ERROR in store GET:", error);
+  }
 }
 
 function* createCalendarEvent(action){

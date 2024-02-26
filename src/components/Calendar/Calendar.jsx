@@ -4,6 +4,8 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridDay from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list'
 import interactionPlugin from '@fullcalendar/interaction';
+import EditEvent from './EditEvent';
+import { useState } from 'react';
 
 
 //React imports
@@ -27,8 +29,9 @@ const history = useHistory();
 
   
   //Store for calendar events
-  const event = useSelector(store => store.event[0].calendar);
+  const event = useSelector(store => store.event);
 
+  console.log(`This is the event`, event[0].calendar[0]);
 
 // Handles put request for editing events
   const handleEdit=(clickInfo)=>{
@@ -55,13 +58,11 @@ const history = useHistory();
   }, []);
   
 
-  console.log("this is what is changing", )
-
 
   return (
     <div>
       <AddEvent />
-       
+       <EditEvent  />
       <FullCalendar
         customButtons={( {text: "+",})}
         plugins={[dayGridPlugin, timeGridDay, listPlugin, interactionPlugin, bootstrap5Plugin]}
@@ -75,7 +76,7 @@ const history = useHistory();
         themeSystem={'bootstrap5'}
         height={450}
         // selectMirror={true}
-        events={event}
+        events={event[0].calendar}
         eventContent={renderEventContent}
         headerToolbar={{
           left: 'prev,next today',
@@ -86,6 +87,8 @@ const history = useHistory();
        
         
       />
+
+      
     </div>
   )
 }

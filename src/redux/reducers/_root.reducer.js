@@ -5,6 +5,7 @@ import goalsReducer from './goals.reducer';
 import tasksReducer from './tasks.reducer';
 import event from './calendar.reucer';
 import householdReducer from './household.reducer';
+import setHouseholdNamesReducer from './setHouseholdNames.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   tasksReducer, //reducer for tasks
   event,
   householdReducer,
+  setHouseholdNamesReducer,
   
 });
 

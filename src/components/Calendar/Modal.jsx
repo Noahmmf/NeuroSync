@@ -10,13 +10,15 @@ import { FloatingLabel } from 'react-bootstrap';
 function AddEvent() {
   const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {setShow(false), setAllday(false)};
   const handleShow = () => setShow(true);
 
   const dispatch= useDispatch();
 
   // used for the household ID to render only users who are in current household
   const household = useSelector(store => store.householdReducer[0]);
+
+  // console.log(`This is household`, household.id);
 
   
 //States of form for setting new event
@@ -26,6 +28,8 @@ const [end, setEnd]= useState('');
 const [color, setColor]=useState('red');
 const [date, setDate]=useState('');
 const [allday, setAllday]=useState(false);
+
+console.log(allday);
 
 //handles change when inputs are being entered
 const handleTitleChange = (e) => {
@@ -45,7 +49,7 @@ const handleDateChange = (e) => {
 }
 
 const handleAllDayChange= (e) => {
-  setAllday(true);
+  setAllday(allday === false ? true : false);
 }
 
 const handleSubmit = (event) => {
@@ -63,7 +67,8 @@ if( allday === true){
     start: date,
     end: date,
     color: color
-};
+   }
+
 }else if(allday === false){
    newEvent = {
     allDay: allday,
@@ -73,10 +78,10 @@ if( allday === true){
     start: date + 'T' + start,
     end: date + 'T' + end,
     color: color
-};
+}
+
 }
   
-//  console.log(`this is THE EVENT !!!!!!!!!!what im sending`, newEvent);
 
   const action = {
     type: "CREATE_EVENT",
@@ -84,6 +89,7 @@ if( allday === true){
   };
   dispatch(action);
 
+  setAllday(false);
   setShow(false);
   
 };
@@ -146,7 +152,7 @@ useEffect(() => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={(handleSubmit)}>
+          <Button variant="primary" onClick={handleSubmit}>
             Submit
           </Button>
         </Modal.Footer>

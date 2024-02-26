@@ -4,11 +4,21 @@ import axios from "axios";
 function* getHousehold(){
     try{
         const response = yield axios.get('api/household');
-        console.log("response.data", response.data)
+        // console.log("response.data", response.data)
         yield put({ type: "SET_HOUSEHOLD", payload: response.data})
     }catch (error) {
         console.error("ERROR in store GET:", error);
       }
+}
+
+function* getHouseholdName(){
+  try{
+      const response = yield axios.get('api/household/names');
+      console.log("response.data FOR HOUSEHOLD", response.data)
+      yield put({ type: "SET_HOUSEHOLD_NAMES", payload: response.data})
+  }catch (error) {
+      console.error("ERROR in store  FOR HOUSEHOLD NAMES GET:", error);
+    }
 }
 
 function* createHousehold(action){
@@ -42,6 +52,7 @@ function* householdSaga() {
     yield takeEvery("CREATE_HOUSEHOLD", createHousehold);
     yield takeEvery("JOIN_HOUSEHOLD", joinHousehold);
     yield takeEvery("DELETE_HOUSEHOLD", removeHousehold);
+    yield takeEvery("GET_ALL_NAMES", getHouseholdName);
   }
 
   export default householdSaga;

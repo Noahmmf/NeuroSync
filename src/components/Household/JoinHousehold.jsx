@@ -10,6 +10,7 @@ export default function JoinHousehold(){
 
     const household = useSelector(store => store.householdReducer[0]);
     const newHousehold = useSelector(store => store.householdReducer);
+    // const checkHousehold= useSelector(store => store.setHouseholdNamesReducer);
 
     // console.log('household Name:', newHousehold);
 
