@@ -10,7 +10,7 @@ export default function EditGoals(){
     //getting ID for params. 
     const goalId = useParams();
 
-
+   
 
     //handles the input changes
     const handleTypeChange = (e) => {

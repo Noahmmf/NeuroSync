@@ -10,7 +10,7 @@ Get request for goals section. rejectUnauthenticated user will reject anyone
 who is not the logged in user. 
  */
 router.get("/", rejectUnauthenticated, (req, res) => {
-  const queryText = 'SELECT * FROM "task" WHERE user_id=$1';
+  const queryText = 'SELECT * FROM "task" WHERE user_id=$1 ORDER BY id DESC;';
 
   pool
     .query(queryText, [req.user.id])

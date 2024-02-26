@@ -2,10 +2,12 @@ import { useSelector } from "react-redux"
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Button } from "react-bootstrap";
 
 export default function Household(){
     const history= useHistory();
     const dispatch= useDispatch();
+    
 
     const household = useSelector(store => store.householdReducer[0]);
     const newHousehold = useSelector(store => store.householdReducer);
@@ -24,8 +26,8 @@ export default function Household(){
         return(
             <>
             <h1>Household Details:</h1>
-             <button onClick={()=>history.push( `/createhousehold`)} >Create Household</button>
-             <button onClick={()=>history.push( `/joinhousehold`)}>Join Household</button>
+             <Button onClick={()=>history.push( `/createhousehold`)} >Create Household</Button>
+             <Button onClick={()=>history.push( `/joinhousehold`)}>Join Household</Button>
             
             </>
         )
@@ -34,7 +36,7 @@ export default function Household(){
         <>
         
         <h1>Household Details:</h1>
-        <button data-householdid={household.id} onClick={handleDelete}>Delete Household</button>
+        <Button variant="Danger" data-householdid={household.id} onClick={handleDelete}>Delete Household</Button>
         <p>Household ID: {household.household_id}</p>
         <p>Your household is: {household.name}</p>
         </>

@@ -5,25 +5,100 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Button } from "react-bootstrap";
 
 export default function GoalsItems(props) {
-    const dispatch = useDispatch();
-    const history = useHistory();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-    //targets the click to delete button using datafrom button.
+  //targets the click to delete button using datafrom button.
   const deleteGoal = (e) => {
     dispatch({ type: "DELETE_GOAL", payload: e.target.dataset.goalid });
   };
 
+  if (props.goal.type === "daily" && props.daily === true) {
+    return (
+      <>
+        <li>
+          {props.goal.description}
+          <Button
+            size="sm"
+            data-goalid={props.goal.id}
+            onClick={() => history.push(`/edit/${props.goal.id}`)}
+          >
+            edit
+          </Button>
+          <Button size="sm" data-goalid={props.goal.id} onClick={deleteGoal}>
+            {" "}
+            🔴
+          </Button>
+        </li>
+      </>
+    );
+  } else if (props.goal.type === "monthly" && props.monthly === true) {
+    return (
+      <>
+        <li>
+          {props.goal.description}
+          <Button
+            size="sm"
+            data-goalid={props.goal.id}
+            onClick={() => history.push(`/edit/${props.goal.id}`)}
+          >
+            edit
+          </Button>
+          <Button size="sm" data-goalid={props.goal.id} onClick={deleteGoal}>
+            {" "}
+            🔴
+          </Button>
+        </li>
+      </>
+    );
+  } else if (props.goal.type === "Yearly" && props.yearly === true) {
+    return (
+      <>
+        <li>
+          {props.goal.description}
+          <Button
+            size="sm"
+            data-goalid={props.goal.id}
+            onClick={() => history.push(`/edit/${props.goal.id}`)}
+          >
+            edit
+          </Button>
+          <Button size="sm" data-goalid={props.goal.id} onClick={deleteGoal}>
+            {" "}
+            🔴
+          </Button>
+        </li>
+      </>
+    );
+  } else if (props.goal.type === "5 Year" && props.fiveYear === true) {
+    return (
+      <>
+        <li>
+          {props.goal.description}
+          <Button
+            size="sm"
+            data-goalid={props.goal.id}
+            onClick={() => history.push(`/edit/${props.goal.id}`)}
+          >
+            edit
+          </Button>
+          <Button size="sm" data-goalid={props.goal.id} onClick={deleteGoal}>
+            {" "}
+            🔴
+          </Button>
+        </li>
+      </>
+    );
+  }
 
+  //   return(
 
+  //     <>
+  //     <li>{props.goal.description}
+  //     <Button size="sm" data-goalid={props.goal.id} onClick={()=>history.push( `/edit/${props.goal.id}`)}>edit</Button>
+  //     <Button size="sm" data-goalid={props.goal.id} onClick={deleteGoal}> 🔴
+  // </Button></li>
+  // </>
 
-  return (
-    <>
-        <li>{props.goal.description}
-        <Button size="sm" data-goalid={props.goal.id} onClick={()=>history.push( `/edit/${props.goal.id}`)}>edit</Button>
-        <Button size="sm" data-goalid={props.goal.id} onClick={deleteGoal}> 🔴
-  </Button></li>
-    </>
-  );
-  
+  // )
 }
-
