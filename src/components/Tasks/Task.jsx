@@ -3,6 +3,7 @@ import TasksItems from "./TaskItems";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import "./Tasks.css";
+import { Button } from "react-bootstrap";
 
 export default function Tasks() {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ export default function Tasks() {
             placeholder="Task Description"
             type="text"
           />
-          <button type="submit">Submit</button>
+          <Button type="submit">Submit</Button>
         </form>
         <h3>Tasks List</h3>
         <p>Please enter a task!</p>
@@ -63,7 +64,7 @@ export default function Tasks() {
           placeholder="Task Description"
           type="text"
         />
-        <button type="submit">Submit</button>
+        <Button type="submit">Submit</Button>
       </form>
       <h3>Tasks List</h3>
       <ul>

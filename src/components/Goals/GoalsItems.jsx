@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Button } from "react-bootstrap";
 
 export default function GoalsItems(props) {
     const dispatch = useDispatch();
@@ -18,9 +19,9 @@ export default function GoalsItems(props) {
   return (
     <>
         <li>{props.goal.description}
-        <button data-goalid={props.goal.id} onClick={()=>history.push( `/edit/${props.goal.id}`)}>edit</button>
-        <button data-goalid={props.goal.id} onClick={deleteGoal}> 🔴
-  </button></li>
+        <Button size="sm" data-goalid={props.goal.id} onClick={()=>history.push( `/edit/${props.goal.id}`)}>edit</Button>
+        <Button size="sm" data-goalid={props.goal.id} onClick={deleteGoal}> 🔴
+  </Button></li>
     </>
   );
   

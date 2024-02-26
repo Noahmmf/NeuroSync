@@ -2,6 +2,7 @@ import { useState } from "react";
 import GoalsItems from "./GoalsItems"
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
+import { Button } from "react-bootstrap";
 
 
 
@@ -54,7 +55,7 @@ export default function Goals(){
 
             <label htmlFor="description">Description:</label>
             <input value={goal.description} required onChange={handleDescriptionChange} placeholder="Goal Description" type="text" />
-            <button type="submit">Submit</button>
+            <Button type="submit">Submit</Button>
         </form>
             <p>Please enter a goal!</p>
             </>
@@ -73,9 +74,9 @@ export default function Goals(){
 
             <label htmlFor="description">Description:</label>
             <input onChange={handleDescriptionChange} value={goal.description} placeholder="Goal Description" type="text" />
-            <button type="submit">Submit</button>
+            <Button type="submit">Submit</Button>
         </form>
-        <button>Daily</button> <button>Monthly</button> <button>Yearly</button> <button>5 Year</button>
+        <Button>Daily</Button> <Button>Monthly</Button> <Button>Yearly</Button> <Button>5 Year</Button>
         <h3>Goals List</h3>
             <ul>
             {goals.map((goal)=> <GoalsItems key={goal.id} goal={goal} />)}

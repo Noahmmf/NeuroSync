@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { Button } from "react-bootstrap";
 
 export default function EditGoals(){
     //react variables
@@ -49,7 +50,7 @@ export default function EditGoals(){
 
             <label htmlFor="description">Description:</label>
             <input onChange={handleDescriptionChange} placeholder="Goal Description" type="text" />
-            <button type="submit">Submit</button>
+            <Button type="submit">Submit</Button>
         </form>
         </>
     )

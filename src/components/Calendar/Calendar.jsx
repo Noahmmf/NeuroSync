@@ -1,36 +1,44 @@
+//FullCalendar Imports
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridDay from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list'
-import { useDispatch, useSelector } from 'react-redux'
 import interactionPlugin from '@fullcalendar/interaction';
 
+
+//React imports
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
-import Example from './Modal'
+import AddEvent from './Modal'
+import { useEffect } from 'react'
+
+//Bootstrap imports
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 
 
 
 export default function Calendar(){
+  //React variables
 const dispatch= useDispatch();
-const eventID = useParams();
 const history = useHistory();
 
   
-
+  //Store for calendar events
   const event = useSelector(store => store.event[0].calendar);
 
-  // console.log(`these are the events:`, event);
 
-
+// Handles put request for editing events
   const handleEdit=(clickInfo)=>{
     const eventId= clickInfo.event.id
 
     console.log("Clicking this thing", eventId);
     history.push( `/editevent/${eventId}`);
-
   }
 
+  //Delete request for deleting an event.
   const deleteEvent = (clickInfo)=>{
     const eventId = clickInfo.event.id;
 
@@ -42,7 +50,9 @@ const history = useHistory();
 
   }
 
-  
+  useEffect(() => {
+    dispatch({type: 'GET_EVENTS'});
+  }, []);
   
 
   console.log("this is what is changing", )
@@ -50,10 +60,11 @@ const history = useHistory();
 
   return (
     <div>
-      <Example />
+      <AddEvent />
        
       <FullCalendar
-        plugins={[dayGridPlugin, timeGridDay, listPlugin, interactionPlugin]}
+        customButtons={( {text: "+",})}
+        plugins={[dayGridPlugin, timeGridDay, listPlugin, interactionPlugin, bootstrap5Plugin]}
         initialView='timeGridDay'
         weekends={true}
         editable={true}
@@ -61,7 +72,7 @@ const history = useHistory();
         nowIndicator={true}
         handleWindowResize={true}
         eventTextColor='black'
-        // themeSystem={'bootstrap 5'}
+        themeSystem={'bootstrap5'}
         height={450}
         // selectMirror={true}
         events={event}

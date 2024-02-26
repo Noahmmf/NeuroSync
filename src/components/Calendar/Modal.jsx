@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { FloatingLabel } from 'react-bootstrap';
 
-function Example() {
+function AddEvent() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -156,4 +156,4 @@ useEffect(() => {
 }
 
 
-export default Example;
+export default AddEvent;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Button } from "react-bootstrap";
 
 export default function TasksItems(props) {
   // react variables 
@@ -32,13 +33,16 @@ const dispatchCompletion= e=>{
   dispatch({type: "EDIT_TASK", payload: newtask});
 }
 
+  const isComplete = props.task.is_complete;
+
+
   
 
   return (
     <>
-        <li data-taskid={props.task.id} onClick={( dispatchCompletion )}>{props.task.task_details}
-        <button data-taskid={props.task.id} onClick={deleteTask}> 🔴
-  </button></li>
+        <li data-taskid={props.task.id} className={isComplete === true ? 'completed' : ''} onClick={( dispatchCompletion )}>{props.task.task_details}
+        <Button size="sm"  data-taskid={props.task.id} onClick={deleteTask}> 🔴
+  </Button></li>
     </>
   );
   

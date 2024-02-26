@@ -6,7 +6,8 @@
     "node": "18.x"
   },
   "dependencies": {
-    "@fullcalendar/core": "^6.1.10",
+    "@fullcalendar/bootstrap5": "^6.1.11",
+    "@fullcalendar/core": "^6.1.11",
     "@fullcalendar/daygrid": "^6.1.10",
     "@fullcalendar/interaction": "^6.1.10",
     "@fullcalendar/list": "^6.1.10",
@@ -15,6 +16,7 @@
     "axios": "^1.6.2",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3",
     "cookie-session": "^2.0.0",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",

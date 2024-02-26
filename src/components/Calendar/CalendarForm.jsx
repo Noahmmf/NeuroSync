@@ -14,7 +14,7 @@ export default function Form(){
 const [title, setTitle] = useState('');
 const [start, setStart] = useState('');
 const [end, setEnd]= useState('');
-const [color, setColor]=useState('red');
+const [color, setColor]=useState('blue');
 const [date, setDate]=useState('');
 const [allday, setAllday]=useState(false);
 
