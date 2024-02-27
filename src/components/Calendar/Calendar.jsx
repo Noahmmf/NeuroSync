@@ -4,7 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridDay from '@fullcalendar/timegrid'
 import listPlugin from '@fullcalendar/list'
 import interactionPlugin from '@fullcalendar/interaction';
-import EditEvent from './EditEvent';
+// import EditEvent from './EditEvent';
 import { useState } from 'react';
 
 
@@ -213,7 +213,7 @@ if(event[0]?.calendar === undefined){
       <FullCalendar
        customButtons={{
         myCustomButton: {
-            text: 'custom!',
+            text:'Add Event',
             click: handleShow
         },
     }}
@@ -290,14 +290,15 @@ if(event[0]?.calendar === undefined){
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="secondary" onClick={deleteEvent}>
+          {grabbedEvent === '' ? '' : <Button variant="secondary" onClick={deleteEvent}>
             Delete
-          </Button>
+          </Button>}
           {grabbedEvent === '' ? <Button variant="primary" onClick={(handleNewEvent)}>
             Submit
           </Button> :  <Button variant="primary" onClick={(handleSubmit)}>
             Save Changes
           </Button>}
+         
         </Modal.Footer>
       </Modal>
     </>
