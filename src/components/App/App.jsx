@@ -22,11 +22,10 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import EditGoals from '../Goals/GoalsEdit';
 import Goals from '../Goals/Goals';
 import Tasks from '../Tasks/Task';
-// import EditTask from '../Tasks/TaskEdit';
 import Household from '../Household/Household';
 import CreateHousehold from '../Household/CreateHoushold';
 import JoinHousehold from '../Household/JoinHousehold';
-import EditEvent from '../Calendar/EditEvent';
+
 
 
 import './App.css';
@@ -72,13 +71,6 @@ function App() {
             path="/user"
           >
             <Dashboard />
-          </ProtectedRoute>
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/editevent/:id"
-          >
-            < EditEvent />
           </ProtectedRoute>
 
           <ProtectedRoute

@@ -36,7 +36,7 @@ export default function Household(){
         <>
         
         <h1>Household Details:</h1>
-        <Button variant="Danger" data-householdid={household.id} onClick={handleDelete}>Delete Household</Button>
+        <Button variant="danger" data-householdid={household.id} onClick={handleDelete}>Delete Household</Button>
         <p>Household ID: {household.household_id}</p>
         <p>Your household is: {household.name}</p>
         </>

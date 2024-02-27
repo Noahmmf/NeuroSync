@@ -11,7 +11,6 @@ import { useState } from 'react';
 //React imports
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
-import AddEvent from './Modal'
 import { useEffect } from 'react'
 
 //Bootstrap imports
@@ -223,6 +222,7 @@ if(event[0]?.calendar === undefined){
         weekends={true}
         editable={false}
         selectable={true}
+        titleFormat={{ year: 'numeric', month: 'short', day: 'numeric' }}
         nowIndicator={true}
         handleWindowResize={true}
         eventTextColor='black'
