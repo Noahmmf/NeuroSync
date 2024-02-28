@@ -5,6 +5,8 @@ const goalsReducer = (state = [], action) => {
       return [...state, action.payload];
     } else if (action.type === 'EDITING_GOAL'){
       return action.payload;
+    }else if (action.type === 'CLEAR_GOALS'){
+      return []
     }
     return state;
   };

@@ -105,6 +105,29 @@ router.delete("/:id", rejectUnauthenticated, (req, res) => {
   });
 // });
 
+router.put("/update-household/:id", rejectUnauthenticated, (req, res) =>  {
+  queryText =`
+  UPDATE "household"
+  SET 
+    "name"=$1,
+    "household_key"=$2
+  WHERE
+    "id"=$3
+  `
+
+  pool
+  .query(queryText, [req.body.name, req.body.household_key, req.params.id])
+  .then((result) => {
+
+    console.log("this is the stuff,", req.body.name, req.body.household_key, req.params.id);
+    res.sendStatus(204);
+  })
+  .catch((err) => {
+    console.log("Error updating household", err);
+    res.sendStatus(500);
+  });
+});
+
 //Second user will be able to join a household by using the household_key the first user has made
 router.post("/code", rejectUnauthenticated, (req, res) => {
   const queryText = `
@@ -141,5 +164,47 @@ router.post("/code", rejectUnauthenticated, (req, res) => {
     });
 });
 
+// router.put("/:id", rejectUnauthenticated, (req, res) => {
+//   const household = req.body;
+//   const householdId = req.params.id;
+
+//   const query = `
+//   UPDATE "household"
+//   SET 
+//     "name"=$1,
+//     "household_key"=$2
+//   WHERE
+//     "household"."id"=$3
+//   `;
+
+//   console.log(`This is what I am updating:`, req.body);
+
+//   pool
+//     .query(query, [household.name, household.household_key, householdId])
+//     .then(() => {
+//       removeQuery = `
+//       DELETE FROM "household_members"
+//       WHERE "user_id" = $1;
+//       ` 
+      
+//       pool
+//         .query(removeQuery, [req.user.id]) .then(() => {
+//           newInsertQuery = `
+//           INSERT INTO  "household_members"
+//           ("household_id", "user_id")
+//           VALUES
+//           ($1, $2);
+//           `
+
+//           pool
+//         .query(removeQuery, [req.user.id]).then(() => {
+//       res.sendStatus(204)})
+//     .catch((err) => {
+//       console.log("Error updating task", err);
+//       res.sendStatus(500);
+//     });
+//   });
+// });
+// });
 
 module.exports = router;

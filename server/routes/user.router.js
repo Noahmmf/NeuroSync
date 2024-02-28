@@ -25,7 +25,33 @@ router.post("/register", (req, res, next) => {
     VALUES ($1, $2) RETURNING id`;
   pool
     .query(queryText, [username, password])
-    .then(() => res.sendStatus(201))
+    .then((result) => {
+      const newUserId = result.rows[0].id
+
+
+      const householdQuery =`
+      INSERT INTO "household"
+      ("name")
+      VALUES
+      ($1)
+      RETURNING "id";
+      `;
+      pool.query(householdQuery, [username]).then((result) => {
+        const createdHouseholdId = result.rows[0].id;
+        console.log("new Household is:", createdHouseholdId);
+    
+        const newHouseholdMembers = `
+        INSERT INTO  "household_members"
+        ("household_id", "user_id")
+        VALUES
+        ($1, $2);
+        `;
+
+        pool
+        .query(newHouseholdMembers, [createdHouseholdId, newUserId])
+      })
+      
+      res.sendStatus(201)})
     .catch((err) => {
       console.log("User registration failed: ", err);
       res.sendStatus(500);

@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux"
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Button } from "react-bootstrap";
+import { useEffect } from "react";
+
 
 export default function Household(){
     const history= useHistory();
@@ -12,6 +13,8 @@ export default function Household(){
     const household = useSelector(store => store.householdReducer[0]);
     const newHousehold = useSelector(store => store.householdReducer);
 
+    
+
    const handleDelete =(e)=>{
     if (confirm("Are you sure you want to delete your household? ") == true) {
         dispatch({ type: "DELETE_HOUSEHOLD", payload: e.target.dataset.householdid });
@@ -19,6 +22,12 @@ export default function Household(){
         return
     }
    }
+
+   useEffect(() => {
+    
+    dispatch({type: 'FETCH_HOUSEHOLD'});
+   
+  }, []);
 
 //  console.log('householdID', household.id)
 
@@ -36,7 +45,10 @@ export default function Household(){
         <>
         
         <h1>Household Details:</h1>
-        <Button variant="danger" data-householdid={household.id} onClick={handleDelete}>Delete Household</Button>
+        {newHousehold.length === 0 ? '' : <Button onClick={()=>history.push( `/createhousehold`)} >Create Household</Button>}
+        <Button onClick={()=>history.push( `/joinhousehold`)}>Join Household</Button>
+        <Button data-householdid={household.id} onClick={()=>history.push(`/update-household/${household.id}`)}>Update Household</Button>
+        <Button variant="danger" data-householdid={household.id} onClick={handleDelete}>Leave Household</Button>
         <p>Household ID: {household.household_id}</p>
         <p>Your household is: {household.name}</p>
         </>

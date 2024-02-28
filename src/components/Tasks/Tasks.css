@@ -4,3 +4,7 @@
   color: green;
   text-decoration: line-through;
 }
+
+ul {
+  cursor: pointer;
+}

@@ -15,7 +15,6 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import Dashboard from '../Dashboard/Dashboard';
-import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
@@ -25,10 +24,11 @@ import Tasks from '../Tasks/Task';
 import Household from '../Household/Household';
 import CreateHousehold from '../Household/CreateHoushold';
 import JoinHousehold from '../Household/JoinHousehold';
-
-
-
+import UpdateHousehold from '../Household/UpdateHousehold';
 import './App.css';
+
+
+
 
 function App() {
   const dispatch = useDispatch();
@@ -42,6 +42,8 @@ function App() {
     dispatch({type: 'GET_EVENTS'});
     dispatch({type: 'FETCH_HOUSEHOLD'});
     dispatch({type: 'GET_ALL_NAMES'})
+
+    
   }, [dispatch]);
 
   return (
@@ -107,6 +109,13 @@ function App() {
             path="/edit/:id"
           >
             <EditGoals />
+          </ProtectedRoute>
+          <ProtectedRoute
+            // logged in shows InfoPage else shows LoginPage
+            exact
+            path="/update-household/:id"
+          >
+            <UpdateHousehold />
           </ProtectedRoute>
           
           <ProtectedRoute

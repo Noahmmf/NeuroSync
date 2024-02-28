@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import "./Tasks.css";
 import { Button } from "react-bootstrap";
+import { useEffect } from "react";
 
 export default function Tasks() {
   const dispatch = useDispatch();
@@ -31,6 +32,12 @@ export default function Tasks() {
   const handleDescriptionChange = (e) => {
     setTask({ ...task, task_details: e.target.value });
   };
+
+  useEffect(() => {
+    
+    dispatch({type: 'FETCH_TASKS'});
+    return () => dispatch({ type: `CLEAR_TASKS` });
+  }, []);
 
   
 

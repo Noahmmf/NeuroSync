@@ -41,9 +41,17 @@ function* createHousehold(action){
 
       function* removeHousehold(action) {
         try {yield axios.delete(`/api/household/${action.payload}`);
-        console.log("this is the payload",action.payload);
+        // console.log("this is the payload",action.payload);
         yield put({ type: "FETCH_HOUSEHOLD" })}catch(error) {
           console.error("ERROR in store removing:", error);
+        }
+      }
+
+      function* updateHousehold(action) {
+        console.log("this is the payload for updating household", action.payload.id);
+        try {yield axios.put(`/api/household/update-household/${action.payload.id}`,  action.payload);
+        yield put({ type: "FETCH_HOUSEHOLD" })}catch(error) {
+          console.error("ERROR in store Updating:", error);
         }
       }
 
@@ -53,6 +61,7 @@ function* householdSaga() {
     yield takeEvery("JOIN_HOUSEHOLD", joinHousehold);
     yield takeEvery("DELETE_HOUSEHOLD", removeHousehold);
     yield takeEvery("GET_ALL_NAMES", getHouseholdName);
+    yield takeEvery("UPDATE_HOUSEHOLD", updateHousehold);
   }
 
   export default householdSaga;

@@ -5,6 +5,8 @@ const tasksReducer = (state = [], action) => {
       return [...state, action.payload];
     } else if (action.type === 'EDITING_TASK'){
       return action.payload;
+    }else if(action.type === 'CLEAR_TASKS'){
+      return []
     }
     return state;
   };

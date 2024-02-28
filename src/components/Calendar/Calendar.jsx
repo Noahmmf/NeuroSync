@@ -76,7 +76,7 @@ const [grabbedEvent, setGrabbedEvent]=useState('');
   const [show, setShow] = useState(false);
 
   //Functions that render the modal
-  const handleClose = () => {setGrabbedEvent(''),setShow(false) };
+  const handleClose = () => {setGrabbedEvent(''), setAllday(false),setShow(false) };
   const handleShow = () => setShow(true);
 
 console.log("grabbed event",(grabbedEvent));
@@ -197,25 +197,25 @@ if( allday === true){
   
 };
 
-
+console.log("this is allday", allday);
   
-if(event[0]?.calendar === undefined){
-  return(
- <p>Loading...</p>
-  )
-}else{
+// if(event[0]?.calendar === undefined){
+//   return(
+//  <p>Loading...</p>
+//   )
+// }else{
 
   return (
     <div>
-      {/* <AddEvent /> */}
+      
        
       <FullCalendar
        customButtons={{
-        myCustomButton: {
-            text:'Add Event',
-            click: handleShow
-        },
-    }}
+      myCustomButton: {
+          text:'Add Event',
+          click: handleShow
+      },
+  }}
       
         plugins={[dayGridPlugin, timeGridDay, listPlugin, interactionPlugin, bootstrap5Plugin]}
         initialView='timeGridDay'
@@ -229,7 +229,7 @@ if(event[0]?.calendar === undefined){
         themeSystem={'bootstrap5'}
         height={450}
         // selectMirror={true}
-        events={event[0].calendar}
+        events={event[0]?.calendar}
         eventContent={renderEventContent}
         headerToolbar={{
           left: 'prev,next today myCustomButton',
@@ -290,7 +290,7 @@ if(event[0]?.calendar === undefined){
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          {grabbedEvent === '' ? '' : <Button variant="secondary" onClick={deleteEvent}>
+          {grabbedEvent === '' ? '' : <Button variant="danger" onClick={deleteEvent}>
             Delete
           </Button>}
           {grabbedEvent === '' ? <Button variant="primary" onClick={(handleNewEvent)}>
@@ -315,4 +315,4 @@ function renderEventContent(eventInfo) {
     </>
   )
 }
-}
+// }

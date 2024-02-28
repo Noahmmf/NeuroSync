@@ -10,12 +10,13 @@ function AboutPage() {
     <div className="container">
       <div>
         <h2>HeartSync: Enhance Your Relationship Every Day.</h2>
-        <p>Discover a new way to stay connected with your partner - HeartSync. 
-          Our innovative app is more than just a tool; it's a journey towards deeper 
-          understanding and synchronized living. With HeartSync, effortlessly align your 
-          schedules with our shared calendar and infuse your day with positivity. Set and track goals together or individually, transforming
-            aspirations into shared experiences. Manage day-to-day tasks seamlessly with our integrated task list.
-            Sign up today! </p>
+        <p>NueroSync is your go-to app for staying on top of things - 
+          made with your unique brain in mind. It's simple: our app helps
+           you sync up life's bits and pieces without the overwhelm. Share 
+           calendars to keep everyone on the same page, sprinkle your day with 
+           upbeat vibes, and tackle goals and tasks together or solo, turning dreams 
+           into reality. Plus, our task list is super easy to use, keeping daily to-dos 
+           clear and manageable. Ready to make life smoother? Join us now!</p>
       </div>
     </div>
   );

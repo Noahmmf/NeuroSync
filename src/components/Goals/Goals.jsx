@@ -3,6 +3,7 @@ import GoalsItems from "./GoalsItems"
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Button } from "react-bootstrap";
+import { useEffect } from "react";
 
 
 
@@ -17,7 +18,11 @@ export default function Goals(){
         description: ''
     }); 
 
-  
+    useEffect(() => {
+    
+        dispatch({type: 'FETCH_GOALS'});
+        return () => dispatch({ type: `CLEAR_GOALS` });
+      }, []);
 
     const addNewGoal = event =>{
         event.preventDefault();
