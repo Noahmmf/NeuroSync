@@ -2,6 +2,14 @@ import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import {useSelector} from 'react-redux';
 import Calendar from '../Calendar/Calendar';
+import Tasks from '../Tasks/Task'
+import './Dashboard.css'
+
+//bootstrap
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 
 function Dashboard() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -15,7 +23,22 @@ function Dashboard() {
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <p>Your ID is: {user.id}</p>
-      < Calendar />
+      <Container>
+        <Col>
+        <Row className="calendar" >
+
+          < Calendar />
+        </Row>
+        <Row>
+        < Tasks />
+        </Row>
+        </Col>
+        <Col>
+        </Col>
+      </Container>
+      <Container>
+        
+      </Container>
       
       <LogOutButton className="btn" />
     </div>
