@@ -8,3 +8,15 @@
 ul {
   cursor: pointer;
 }
+
+.tasks{
+  width: 300px;
+  padding: 50px;
+  margin: 20px;
+  border-left-width: 10px;
+  border-right-width: 10px;
+  border-bottom-width: 10px;
+  overflow-y: scroll;
+  flex: content;
+}
+

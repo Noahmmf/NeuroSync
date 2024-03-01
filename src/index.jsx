@@ -6,6 +6,8 @@ import store from './redux/store';
 
 import App from './components/App/App';
 
+import "bootswatch/dist/flatly/bootstrap.min.css"
+
 
 const root = ReactDOM.createRoot(document.getElementById('react-root'));
 root.render(

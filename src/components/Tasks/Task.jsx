@@ -3,8 +3,10 @@ import TasksItems from "./TaskItems";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import "./Tasks.css";
-import { Button } from "react-bootstrap";
 import { useEffect } from "react";
+
+import { Button } from "react-bootstrap";
+import { Form, FloatingLabel } from "react-bootstrap";
 
 export default function Tasks() {
   const dispatch = useDispatch();
@@ -16,7 +18,6 @@ export default function Tasks() {
     is_complete: false,
   });
 
-  console.log("this is what I am sending", task);
 
   const addNewTask = (event) => {
     event.preventDefault();
@@ -44,41 +45,56 @@ export default function Tasks() {
   if (tasks.length === 0) {
     return (
       <>
-        <form onSubmit={addNewTask}>
-          <label htmlFor="description">Description:</label>
-          <input
+      <div className="tasks">
+        <Form onSubmit={addNewTask}>
+          <FloatingLabel label="Task Description" htmlFor="description">Description:
+          <Form.Control
+          className="mb-3"
             onChange={handleDescriptionChange}
             required
             value={task.task_details}
             placeholder="Task Description"
             type="text"
           />
+          </FloatingLabel>
           <Button type="submit">Submit</Button>
-        </form>
+        </Form>
         <h3>Tasks List</h3>
         <p>Please enter a task!</p>
+        </div>
       </>
+      
     );
   }
   return (
     <>
-      <form onSubmit={addNewTask}>
-        <label htmlFor="description">Description:</label>
-        <input
-          onChange={handleDescriptionChange}
-          required
-          value={task.task_details}
-          placeholder="Task Description"
-          type="text"
-        />
-        <Button type="submit">Submit</Button>
-      </form>
-      <h3>Tasks List</h3>
+    <div style={{ height: 500, width: 400 }} className="tasks">
+
+        <Form className="mb-3" onSubmit={addNewTask}>
+          <FloatingLabel label="Task Description" htmlFor="description">
+          <Form.Control
+          
+          className="mb-3"
+            onChange={handleDescriptionChange}
+            required
+            value={task.task_details}
+            placeholder="Task Description"
+            type="text"
+          />
+          </FloatingLabel>
+         
+           <Button size='md' className="submit-button" type="submit">Submit</Button>
+            
+        </Form>
+        
+        <h3>Tasks List</h3>
       <ul>
         {tasks.map((task) => (
           <TasksItems key={task.id} task={task} />
         ))}
       </ul>
+  
+      </div>
     </>
   );
 }

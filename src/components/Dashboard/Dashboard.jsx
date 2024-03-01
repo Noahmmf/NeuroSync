@@ -1,46 +1,44 @@
-import React from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector} from 'react-redux';
-import Calendar from '../Calendar/Calendar';
-import Tasks from '../Tasks/Task'
-import './Dashboard.css'
+import React from "react";
+import LogOutButton from "../LogOutButton/LogOutButton";
+import { useSelector } from "react-redux";
+import Calendar from "../Calendar/Calendar";
+import Tasks from "../Tasks/Task";
+import "./Dashboard.css";
+import Goals from "../Goals/Goals";
 
 //bootstrap
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function Dashboard() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
-  const household = useSelector(store => store.householdReducer[0]);
+  const household = useSelector((store) => store.householdReducer[0]);
 
   // console.log("household:", household[0].name);
 
-
   return (
     <div className="container">
-      <h2>Welcome, {user.username}!</h2>
-      <p>Your ID is: {user.id}</p>
-      <Container>
-        <Col>
-        <Row className="calendar" >
+      <h2>
+        <bold>Welcome, {user.username}!</bold>
+      </h2>
 
-          < Calendar />
+      <Container minbreakpoint='sm' breakpoints={['xl','lg', 'md','sm']}>
+        <Row className="justify-content-md-center">
+          <Goals />
         </Row>
-        <Row>
-        < Tasks />
-        </Row>
-        </Col>
-        <Col>
-        </Col>
       </Container>
       <Container>
-        
+        <Row>
+          <Col className="tasks" sm="4">
+          <Tasks />
+          </Col>
+          <Col sm='7' >
+          <Calendar />
+          </Col>
+        </Row>
       </Container>
-      
-      <LogOutButton className="btn" />
     </div>
   );
 }

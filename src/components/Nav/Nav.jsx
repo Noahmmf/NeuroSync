@@ -4,50 +4,48 @@ import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import { useSelector } from 'react-redux';
 
-function Nav() {
+//bootstrap
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+
+export default function Navigation() {
   const user = useSelector((store) => store.user);
 
   return (
-    <div className="nav">
-      <Link to="/home">
+    <Navbar className="nav">
+      <Container>
+      <Navbar.Brand href="/home">
         <h2 className="nav-title">NueroSync</h2>
-      </Link>
-      <div>
+      </Navbar.Brand>
+      <Nav>
         {/* If no user is logged in, show these links */}
         {!user.id && (
           // If there's no user, show login/registration links
-          <Link className="navLink" to="/login">
+          <Nav.Link className="navLink" to="/login">
             Login / Register
-          </Link>
+          </Nav.Link>
         )}
 
         {/* If a user is logged in, show these links */}
         {user.id && (
           <>
-            <Link className="navLink" to="/user">
+            {/* <Nav.Link className="navLink" to="/user">
               Home
-            </Link>
+            </Nav.Link> */}
 
-            <Link className="navLink" to="/info">
-              Info Page
-            </Link>
-            <Link className="navLink" to="/goals">
-              Goals
-            </Link>
-            <Link className="navLink" to="/tasks">
-              Tasks
-            </Link>
+            
 
             <LogOutButton className="navLink" />
           </>
         )}
 
-        <Link className="navLink" to="/about">
-          About
-        </Link>
-      </div>
-    </div>
+        
+      </Nav>
+      </Container>
+    </Navbar>
   );
 }
 
-export default Nav;
+

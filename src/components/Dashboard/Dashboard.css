@@ -1,4 +1,27 @@
+.calendar{
+   display: flex;
+   justify-content: right;
+   background-color:#2D9596;
+   padding-top: 10px;
+   padding-left:10px;
+   
+}
 /* .calendar{
-    width: 50%;
-    float: right;
+    background-color:#2D9596;
+    
+    margin: 30px;
+    padding-top: 20px;
+    padding-bottom: 10px;
 } */
+.test{
+    display: flex;
+
+}
+.child{
+    width: 50%;
+}
+.chil{
+    width: 70%;
+    background-color: #2D9596;
+    padding-top: 0%;
+}

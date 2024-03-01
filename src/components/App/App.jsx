@@ -8,7 +8,7 @@ import {
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import Nav from '../Nav/Nav';
+import Navigation from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
@@ -48,11 +48,11 @@ function App() {
 
   return (
     <Router>
-      <div>
-        <Nav />
+      <div className='background-box'>
+        <Navigation />
         <Switch>
           {/* Visiting localhost:5173 will redirect to localhost:5173/home */}
-          <Redirect exact from="/" to="/home" />
+          <Redirect exact from="/" to="/login" />
 
           {/* Visiting localhost:5173/about will show the about page. */}
           <Route
@@ -96,13 +96,7 @@ function App() {
           >
             <JoinHousehold />
           </ProtectedRoute>
-          <ProtectedRoute
-            // logged in shows InfoPage else shows LoginPage
-            exact
-            path="/goals"
-          >
-            <Goals />
-          </ProtectedRoute>
+        
           <ProtectedRoute
             // logged in shows InfoPage else shows LoginPage
             exact

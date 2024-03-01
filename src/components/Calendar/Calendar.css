@@ -1,11 +1,45 @@
+
+
 /* .fc-daygrid-day-frame {
     height: 60px;
     padding: 2px;
     border: 1px solid black;
     background-color: rgb(245, 241, 241), 0.2;
-    }
+    } */
 
-.fc-timegrid-slot{
-    background-color: blanchedalmond;
+/* .fc-timegrid-slot{
+    background-color: #F1FADA;
+} */
+.fc{
+    background-color: #F1FADA;
+    padding: 30px
 }
- */
+
+.fc-toolbar-title{
+    color:#265073;
+}
+
+.fc-daygrid-day-frame{
+    background-color: #F1FADA;
+}
+.fc-scrollgrid-sync-inner{
+    background-color: #F1FADA;
+}
+.fc-timegrid-axis{
+    background-color: #F1FADA;
+}
+.fc-timegrid-axis-frame{
+    background-color:#F1FADA;
+}
+
+/* .fc-toolbar{
+    background-color:#265073;
+} */
+.fc-toolbar-title{
+    color: black;
+}
+
+.cal-border{
+    background-color: #265073;
+    color: #265073;
+}

@@ -219,7 +219,9 @@ export default function Calendar() {
 
   return (
     <div>
+      
       <FullCalendar
+      
         customButtons={{
           myCustomButton: {
             text: "Add Event",
@@ -244,7 +246,7 @@ export default function Calendar() {
         handleWindowResize={true}
         eventTextColor="black"
         themeSystem={"bootstrap5"}
-        height={550}
+        height={760}
         
         // selectMirror={true}
         events={event[0]?.calendar}
@@ -256,7 +258,7 @@ export default function Calendar() {
         }}
         eventClick={handleEdit}
       />
-
+   
       <>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
@@ -316,12 +318,13 @@ export default function Calendar() {
                 aria-label="Default select example"
               >
                 <option>Select a Color</option>
-                <option value="red">Red</option>
-                <option value="blue">Blue</option>
-                <option value="pink">Pink</option>
+                <option value="#2C3E50">Navy Blue</option>
+                <option value="#95A5A6">Grey</option>
+                <option value="#18BC9C">Teal</option>
                 <option value="#ffebcd">Blanched Almond</option>
-                <option value="purple">Purple</option>
-                <option value="green">Green</option>
+                <option value="#E74C3C">Red</option>
+                <option value="#F39D12">Mustard</option>
+                <option value="#3498DB">Sky</option>
               </Form.Select>
             </Form>
           </Modal.Body>
