@@ -126,12 +126,12 @@ export default function Goals() {
       <Form onSubmit={addNewGoal}>
         <Form.Group as={Row}>
           <Row>
-            <Col sm={2}>
+            <Col className="align-self-start" sm={2}>
               <Form.Label  sm="2" htmlFor="Type">
                 Type :
               </Form.Label>
-              </Col>
-              <Col>
+             </Col>
+           <Col>
               <Form.Select
                 value={goal.type}
                 onChange={handleTypeChange}
@@ -144,9 +144,11 @@ export default function Goals() {
                 <option value="Yearly">Yearly</option>
                 <option value="5 Year">5 Year</option>
               </Form.Select>
-              <Col/>
-                
-              <FloatingLabel column label="Description:" htmlFor="description">
+           </Col>
+           
+           
+             <Col>
+              <FloatingLabel  label="Description:" htmlFor="description">
                 <Form.Control
                   className="mb-3"
                   onChange={handleDescriptionChange}
@@ -155,7 +157,9 @@ export default function Goals() {
                 />
               </FloatingLabel>
               <Button type="submit">Submit</Button>
-            </Col>
+            
+             
+             </Col> 
           </Row>
 
           <Col md={{ span: 8, offset: 2 }} className="btn-group">
