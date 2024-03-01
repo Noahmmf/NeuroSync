@@ -27,24 +27,24 @@ export default function TasksItems(props) {
  };
 
  const isCompleted=()=>{
-  console.log("clicked", complete);
   setComplete(!complete);
+  
  }
 
-const dispatchCompletion= e=>{
-  e.preventDefault();
+const dispatchCompletion= e =>{
+
   isCompleted();
   dispatch({type: "EDIT_TASK", payload: newtask});
 }
 
-  // const isComplete = props.task.is_complete;
+  const isComplete = props.task.is_complete;
 
 
   
 
   return (
     <>
-        <li data-taskid={props.task.id} className={complete === true ? 'completed' : ''} onClick={( dispatchCompletion )}>{props.task.task_details}
+        <li data-taskid={props.task.id} className={isComplete === true ? 'completed' : ''} onClick={( dispatchCompletion )}>{props.task.task_details}
         <Button size="sm" variant=""  data-taskid={props.task.id} onClick={deleteTask}> 🔴
   </Button></li>
     </>

@@ -24,17 +24,17 @@ function Dashboard() {
         Welcome, {user.username}!
       </h2>
 
-      <Container minbreakpoint='sm' breakpoints={['xl','lg', 'md','sm']}>
+      <Container minbreakpoint='sm' breakpoints={['xl','lg', 'md']}>
         <Row className="justify-content-md-center">
           <Goals />
         </Row>
       </Container>
       <Container>
         <Row>
-          <Col className="tasks" >
+          <Col  style={{backgroundColor:'#8693A4ff', height:'760px', borderRadius:'3%', padding:'20px', display:'flex'}}>
           <Tasks />
           </Col>
-          <Col md={{ span: 8}} >
+          <Col md={{ span: 7}} >
           <Calendar />
           </Col>
         </Row>

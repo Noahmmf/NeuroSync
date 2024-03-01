@@ -16,9 +16,9 @@ export default function GoalsItems(props) {
   if (props.goal.type === "daily" && props.daily === true) {
     return (
       <>
-        <li data-goalid={props.goal.id} onClick={() => history.push(`/edit/${props.goal.id}`)}>
+        <li >
           {props.goal.description}
-          
+          <Button data-goalid={props.goal.id} style={{padding:'1px', margin:'5px'}} onClick={() => history.push(`/edit/${props.goal.id}`)}>Edit</Button>
           <Button size="sm" style={{padding:'5px', background:'transparent', border:'none', }} data-goalid={props.goal.id} onClick={deleteGoal}>
             {" "}
             🔴
@@ -29,9 +29,9 @@ export default function GoalsItems(props) {
   } else if (props.goal.type === "monthly" && props.monthly === true) {
     return (
       <>
-        <li data-goalid={props.goal.id} onClick={() => history.push(`/edit/${props.goal.id}`)}>
+        <li >
           {props.goal.description}
-          
+          <Button data-goalid={props.goal.id} style={{padding:'1px', margin:'5px'}} onClick={() => history.push(`/edit/${props.goal.id}`)}>Edit</Button>
           <Button size="sm" style={{padding:'5px', background:'transparent', border:'none', }} data-goalid={props.goal.id} onClick={deleteGoal}>
             {" "}
             🔴
@@ -42,8 +42,9 @@ export default function GoalsItems(props) {
   } else if (props.goal.type === "Yearly" && props.yearly === true) {
     return (
       <>
-        <li data-goalid={props.goal.id} onClick={() => history.push(`/edit/${props.goal.id}`)}>
+        <li >
           {props.goal.description}
+          <Button data-goalid={props.goal.id} style={{padding:'1px', margin:'5px'}} onClick={() => history.push(`/edit/${props.goal.id}`)}>Edit</Button>
           <Button size="sm" style={{padding:'5px', background:'transparent', border:'none', }} data-goalid={props.goal.id} onClick={deleteGoal}>
             {" "}
             🔴
@@ -54,8 +55,9 @@ export default function GoalsItems(props) {
   } else if (props.goal.type === "5 Year" && props.fiveYear === true) {
     return (
       <>
-        <li data-goalid={props.goal.id} onClick={() => history.push(`/edit/${props.goal.id}`)}>
+        <li >
           {props.goal.description}
+          <Button data-goalid={props.goal.id} style={{padding:'1px', margin:'5px'}} onClick={() => history.push(`/edit/${props.goal.id}`)}>Edit</Button>
           <Button style={{padding:'5px', background:'transparent', border:'none', }} size="sm" data-goalid={props.goal.id} onClick={deleteGoal}>
             {" "}
             🔴

@@ -141,7 +141,7 @@ export default function Goals() {
   }
   return (
     <>
-    <Container style={{backgroundColor:"#D6C4C0ff", padding:'20px', margin:'7px', borderRadius:'2%'}} className="goals">
+    <Container style={{backgroundColor:"#D6C4C0ff", padding:'20px', margin:'7px', borderRadius:'2%', display:'-ms-grid'}} className="goals">
       <Form className="tester" onSubmit={addNewGoal}>
         <Form.Group as={Row}>
           <Row>

@@ -41,30 +41,38 @@ export default function Tasks() {
   if (tasks.length === 0) {
     return (
       <>
-        <div className="tasks">
-          <Form onSubmit={addNewTask}>
-            <FloatingLabel label="Task Description" htmlFor="description">
-              <Form.Control
-                className="mb-3"
-                onChange={handleDescriptionChange}
-                required
-                value={task.task_details}
-                placeholder="Task Description"
-                type="text"
-              />
-            </FloatingLabel>
-            <Button type="submit">Submit</Button>
-          </Form>
+        <Container>
+        <Row>
+            <Form className="mb-3" onSubmit={addNewTask}>
+              <Col xs={10}>
+                <FloatingLabel label="Task Description" htmlFor="description">
+                  <Form.Control
+                    className="mb-3"
+                    onChange={handleDescriptionChange}
+                    required
+                    value={task.task_details}
+                    placeholder="Task Description"
+                    type="text"
+                  />
+                </FloatingLabel>
+              </Col>
+              <Col xs={1}>
+                <Button size="md" className="submit-button" type="submit">
+                  Submit
+                </Button>
+              </Col>
+            </Form>
+          </Row>
           <h3>Tasks List</h3>
           <p>Please enter a task!</p>
-        </div>
+          </Container>
       </>
     );
   }
   return (
     <>
-      <div style={{ height: 500, width: 400 }} className="tasks">
-        <Container style={{backgroundColor:'#8693A4ff', height:'760px', borderRadius:'3%', padding:'20px'}}>
+     
+        <Container >
           <Row>
             <Form className="mb-3" onSubmit={addNewTask}>
               <Col>
@@ -93,7 +101,7 @@ export default function Tasks() {
             ))}
           </ul>
         </Container>
-      </div>
+      
     </>
   );
 }

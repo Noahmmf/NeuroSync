@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Button } from "react-bootstrap";
 import { useEffect } from "react";
 
+import {Container, Row, Col} from "react-bootstrap";
 
 export default function Household(){
     const history= useHistory();
@@ -43,14 +44,28 @@ export default function Household(){
     }
     return(
         <>
+        <Container>
+            <Row > 
+        <h1>Household Details: </h1>
+        <h2>Household: {household.name} Household key:{household.household_key}</h2>
         
-        <h1>Household Details:</h1>
+            </Row>
+
+        <p>When you log in, you will be placed into a household with your username. To update your household, please click "Update Household".
+          
+        </p>
+        </Container>
+        <Container>
+            <Row xs={2} className="mb-3" style={{padding:'10px', margin:'10px'}}>
         {newHousehold.length === 0 ? '' : <Button onClick={()=>history.push( `/createhousehold`)} >Create Household</Button>}
         <Button onClick={()=>history.push( `/joinhousehold`)}>Join Household</Button>
         <Button data-householdid={household.id} onClick={()=>history.push(`/update-household/${household.id}`)}>Update Household</Button>
         <Button variant="danger" data-householdid={household.id} onClick={handleDelete}>Leave Household</Button>
-        <p>Household ID: {household.household_id}</p>
-        <p>Your household is: {household.name}</p>
+        </Row>
+        
+        <p></p>
+        <p></p>
+        </Container>
         </>
     )
 }
