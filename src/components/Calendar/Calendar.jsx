@@ -20,7 +20,8 @@ import bootstrap5Plugin from "@fullcalendar/bootstrap5";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { FloatingLabel } from "react-bootstrap";
+import { FloatingLabel, Container } from "react-bootstrap";
+
 
 
 //import from sweetAlert
@@ -219,7 +220,7 @@ export default function Calendar() {
 
   return (
     <div>
-      
+      <Container style={{position:'relative', display:'flex'}}>
       <FullCalendar
       
         customButtons={{
@@ -258,7 +259,7 @@ export default function Calendar() {
         }}
         eventClick={handleEdit}
       />
-   
+   </Container>
       <>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>

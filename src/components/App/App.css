@@ -13,11 +13,11 @@ body,
 }
 
 .background-box{
-  background-image: linear-gradient(to bottom,#4F7E90, #15262C );
-
+  background-image: linear-gradient(to bottom, #334666ff, #A3C4E0ff, #D6C4C0ff, #8693A4ff, #AFBCBAff);
+  position:relative;
   margin-left: 80px;
   margin-right: 80px;
-  
+  margin-bottom: auto;
 }
 
 body {

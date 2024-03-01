@@ -11,6 +11,7 @@ import {
   FloatingLabel,
 } from "react-bootstrap";
 import { useEffect } from "react";
+import './goals.css'
 
 export default function Goals() {
   const dispatch = useDispatch();
@@ -83,55 +84,16 @@ export default function Goals() {
   if (goals.length === 0) {
     return (
       <>
-        <Form onSubmit={addNewGoal}>
-          <Form.Label htmlFor="Type"></Form.Label>
-          <Form.Select
-            value={goal.type}
-            onChange={handleTypeChange}
-            name="Type"
-            id="Type"
-          >
-            <option value="daily">Daily</option>
-            <option value="monthly">Monthly</option>
-            <option value="Yearly">Yearly</option>
-            <option value="5 Year">5 Year</option>
-          </Form.Select>
-
-          <FloatingLabel label="Description:" htmlFor="description">
-            <Form.Control
-              value={goal.description}
-              required
-              onChange={handleDescriptionChange}
-              type="text"
-            />
-          </FloatingLabel>
-          <Button type="submit">Submit</Button>
-        </Form>
-        <Container>
-          <Row>
-            <Col className="btn-group">
-              <Button onClick={renderDaily}>Daily</Button>{" "}
-              <Button onClick={renderMonthly}>Monthly</Button>{" "}
-              <Button onClick={renderYearly}>Yearly</Button>{" "}
-              <Button onClick={renderFiveYear}>5 Year</Button>
-            </Col>
-          </Row>
-        </Container>
-        <p>Please enter a goal!</p>
-      </>
-    );
-  }
-  return (
-    <>
-      <Form onSubmit={addNewGoal}>
+      <Container>
+      <Form className="tester" onSubmit={addNewGoal}>
         <Form.Group as={Row}>
           <Row>
-            <Col className="align-self-start" sm={2}>
+            <Col md={{span:1}} className="align-self-start" sm={2}>
               <Form.Label  sm="2" htmlFor="Type">
                 Type :
               </Form.Label>
              </Col>
-           <Col>
+           <Col className="align-self-start">
               <Form.Select
                 value={goal.type}
                 onChange={handleTypeChange}
@@ -147,7 +109,7 @@ export default function Goals() {
            </Col>
            
            
-             <Col>
+             <Col className="align-self-center" sm={{span:6}}>
               <FloatingLabel  label="Description:" htmlFor="description">
                 <Form.Control
                   className="mb-3"
@@ -156,10 +118,10 @@ export default function Goals() {
                   type="text"
                 />
               </FloatingLabel>
-              <Button type="submit">Submit</Button>
-            
-             
              </Col> 
+             <Col>
+              <Button type="submit">Submit</Button>
+             </Col>
           </Row>
 
           <Col md={{ span: 8, offset: 2 }} className="btn-group">
@@ -170,7 +132,64 @@ export default function Goals() {
           </Col>
         </Form.Group>
       </Form>
+      <Col>
+        <p>Please enter a goal!</p>
+      </Col>
+      </Container>
+      </>
+    );
+  }
+  return (
+    <>
+    <Container style={{backgroundColor:"#D6C4C0ff", padding:'20px', margin:'7px', borderRadius:'2%'}} className="goals">
+      <Form className="tester" onSubmit={addNewGoal}>
+        <Form.Group as={Row}>
+          <Row>
+            <Col md={{span:1}} className="align-self-start" sm={2}>
+              <Form.Label  sm="2" htmlFor="Type">
+                Type :
+              </Form.Label>
+             </Col>
+           <Col className="align-self-start">
+              <Form.Select
+                value={goal.type}
+                onChange={handleTypeChange}
+                name="Type"
+                id="Type"
+                className="mb-3"
+              >
+                <option value="daily">Daily</option>
+                <option value="monthly">Monthly</option>
+                <option value="Yearly">Yearly</option>
+                <option value="5 Year">5 Year</option>
+              </Form.Select>
+           </Col>
+           
+           
+             <Col className="align-self-center" sm={{span:6}}>
+              <FloatingLabel  label="Description:" htmlFor="description">
+                <Form.Control
+                  className="mb-3"
+                  onChange={handleDescriptionChange}
+                  value={goal.description}
+                  type="text"
+                />
+              </FloatingLabel>
+             </Col> 
+             <Col>
+              <Button type="submit">Submit</Button>
+             </Col>
+          </Row>
 
+          <Col md={{ span: 8, offset: 2 }} className="btn-group">
+            <Button onClick={renderDaily}>Daily</Button>{" "}
+            <Button onClick={renderMonthly}>Monthly</Button>{" "}
+            <Button onClick={renderYearly}>Yearly</Button>{" "}
+            <Button onClick={renderFiveYear}>5 Year</Button>
+          </Col>
+        </Form.Group>
+      </Form>
+      <Col className="goals-list" style={{padding:'6px'}} md={{ span: 8, offset: 2 }}>
       <ul>
         {goals.map((goal) => (
           <GoalsItems
@@ -183,6 +202,8 @@ export default function Goals() {
           />
         ))}
       </ul>
+      </Col>
+      </Container>
     </>
   );
 }

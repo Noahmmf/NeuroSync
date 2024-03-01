@@ -21,7 +21,7 @@ function Dashboard() {
   return (
     <div className="container">
       <h2>
-        <bold>Welcome, {user.username}!</bold>
+        Welcome, {user.username}!
       </h2>
 
       <Container minbreakpoint='sm' breakpoints={['xl','lg', 'md','sm']}>
@@ -31,10 +31,10 @@ function Dashboard() {
       </Container>
       <Container>
         <Row>
-          <Col className="tasks" sm="4">
+          <Col className="tasks" >
           <Tasks />
           </Col>
-          <Col sm='7' >
+          <Col md={{ span: 8}} >
           <Calendar />
           </Col>
         </Row>
