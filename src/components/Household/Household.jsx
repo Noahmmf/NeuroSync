@@ -4,11 +4,19 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { Button } from "react-bootstrap";
 import { useEffect } from "react";
 
+import { useState } from 'react';
+import Modal from 'react-bootstrap/Modal';
+
 import {Container, Row, Col} from "react-bootstrap";
 
 export default function Household(){
     const history= useHistory();
     const dispatch= useDispatch();
+
+    const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
     
 
     const household = useSelector(store => store.householdReducer[0]);
@@ -17,11 +25,26 @@ export default function Household(){
     
 
    const handleDelete =(e)=>{
-    if (confirm("Are you sure you want to delete your household? ") == true) {
-        dispatch({ type: "DELETE_HOUSEHOLD", payload: e.target.dataset.householdid });
-    }else{
-        return
-    }
+    Swal.fire({
+        title: "Are you sure?",
+        text: "You MUST create a new household to be able to use some features.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+            });
+            dispatch({ type: "DELETE_HOUSEHOLD", payload: e.target.dataset.householdid });
+        }
+      });
+     
+   
    }
 
    useEffect(() => {
@@ -29,6 +52,8 @@ export default function Household(){
     dispatch({type: 'FETCH_HOUSEHOLD'});
    
   }, []);
+
+ 
 
 //  console.log('householdID', household.id)
 
@@ -45,13 +70,13 @@ export default function Household(){
     return(
         <>
         <Container>
-            <Row > 
-        <h1>Household Details: </h1>
-        <h2>Household: {household.name} Household key:{household.household_key}</h2>
-        
+            <Row className="mb-3" > 
+        <Button variant="warning" onClick={handleShow}>
+        Show Household
+      </Button>
             </Row>
 
-        <p>When you log in, you will be placed into a household with your username. To update your household, please click "Update Household".
+        <p >When you log in, you will be placed into a household with your username. To update your household, please click "Update Household".
           
         </p>
         </Container>
@@ -63,9 +88,25 @@ export default function Household(){
         <Button variant="danger" data-householdid={household.id} onClick={handleDelete}>Leave Household</Button>
         </Row>
         
-        <p></p>
-        <p></p>
         </Container>
+
+        <>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Household Details:</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+           <h2> Household Name: {household.name}</h2>
+       <h2> Household key:{household.household_key}</h2>
+       
+       </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
         </>
     )
 }

@@ -84,7 +84,7 @@ export default function Goals() {
   if (goals.length === 0) {
     return (
       <>
-      <Container>
+      <Container style={{backgroundColor:"#D6C4C0ff", padding:'20px', margin:'7px', borderRadius:'2%', display:'-ms-grid'}}>
       <Form className="tester" onSubmit={addNewGoal}>
         <Form.Group as={Row}>
           <Row>
@@ -132,7 +132,7 @@ export default function Goals() {
           </Col>
         </Form.Group>
       </Form>
-      <Col>
+      <Col style={{padding:'6px'}} md={{ span: 8, offset: 2 }}>
         <p>Please enter a goal!</p>
       </Col>
       </Container>
