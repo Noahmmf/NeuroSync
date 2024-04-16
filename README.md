@@ -4,6 +4,10 @@
 NueroSync was built for the NueroDivergent. As someone with ADHD my hope was to build an application that had a simple layout that would have tasks, goals and a calendar all on one screen 
 to be able to know everything about there upcoming day, make notes if needed.
 
+## future implimentation
+1. Daily journaling
+2. Daily mental health assessment 
+
 ## Prerequisites
 
 Before you get started, make sure you have the following software installed on your computer:
