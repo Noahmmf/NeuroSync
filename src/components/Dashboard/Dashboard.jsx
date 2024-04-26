@@ -1,5 +1,4 @@
 import React from "react";
-import LogOutButton from "../LogOutButton/LogOutButton";
 import { useSelector } from "react-redux";
 import Calendar from "../Calendar/Calendar";
 import Tasks from "../Tasks/Task";
